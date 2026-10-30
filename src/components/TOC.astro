@@ -1,0 +1,37 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+}
+
+const { headings } = Astro.props;
+const filteredHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+
+{filteredHeadings.length > 0 && (
+  <nav class="bg-gray-50 border border-gray-200 rounded-2xl p-5 mb-8">
+    <div class="flex items-center gap-2 mb-3 text-gray-900 font-bold text-sm tracking-wide">
+      <svg class="w-4 h-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+      </svg>
+      <span>Daftar Isi Artikel</span>
+    </div>
+    <ul class="space-y-2 text-xs">
+      {filteredHeadings.map((h) => (
+        <li class={h.depth === 3 ? 'pl-4' : ''}>
+          <a
+            href={`#${h.slug}`}
+            class="text-gray-600 hover:text-orange-600 transition-colors block leading-relaxed"
+          >
+            {h.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}

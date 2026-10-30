@@ -1,0 +1,208 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GoogleSourcePreferences from '../../components/GoogleSourcePreferences.astro';
+
+export function getStaticPaths() {
+  const areaList = [
+    {
+      slug: 'ilir-timur',
+      name: 'Pijat Panggilan Ilir Timur Palembang (Sudirman, Veteran, Rajawali)',
+      title: 'Pijat Panggilan Ilir Timur Palembang 24 Jam | Area Sudirman & Veteran',
+      desc: 'Jasa pijat panggilan 24 jam ke hotel dan rumah di Ilir Timur Palembang (Sudirman, Rajawali, Veteran). Terapis tiba 25-35 menit, tanpa DP dan gratis ongkir.',
+      landmarks: 'Jl. Jenderal Sudirman, Jl. Veteran, Jl. Rajawali, Duku, KM 3.5 hingga KM 5, Mayor Ruslan',
+      hotels: ['The Zuri Palembang', 'Aryaduta Palembang', 'Aston Palembang Hotel', 'The 1O1 Rajawali', 'Algorithma Hotel', 'Favehotel Palembang'],
+      eta: '25–35 Menit',
+    },
+    {
+      slug: 'ilir-barat',
+      name: 'Pijat Panggilan Ilir Barat Palembang (Demang Lebar Daun & Polygon)',
+      title: 'Pijat Panggilan Ilir Barat Palembang | Demang Lebar Daun & Bukit Besar',
+      desc: 'Layanan urut & massage panggilan ke perumahan dan kos di Ilir Barat Palembang. Area Demang Lebar Daun, Polygon, Bukit Besar. Bawa matras sendiri.',
+      landmarks: 'Demang Lebar Daun, Bukit Besar, Kawasan Perumahan Bukit Sejahtera Polygon, Macan Lindung, Padang Selasa',
+      hotels: ['Harper Palembang', 'Excelton Hotel', 'The Arista Hotel Palembang', 'Batiqa Hotel Palembang'],
+      eta: '30–40 Menit',
+    },
+    {
+      slug: 'sukarami-bandara',
+      name: 'Pijat Panggilan Sukarami & Sekitar Bandara SMB II Palembang',
+      title: 'Pijat Panggilan Sukarami & Bandara SMB II Palembang 24 Jam',
+      desc: 'Pijat panggilan capek perjalanan transit Bandara Sultan Mahmud Badaruddin II & Sukarami Palembang. Cepat tiba 30-45 menit ke Santika Premiere & CitraGrand.',
+      landmarks: 'Bandara Internasional SMB II, Talang Kelapa, Alang-Alang Lebar, Kebun Bunga, CitraGrand City, Kolonel H. Burlian KM 9-12',
+      hotels: ['Hotel Santika Premiere Bandara Palembang', 'Prime Park Hotel', 'Red Planet Palembang'],
+      eta: '30–45 Menit',
+    },
+    {
+      slug: 'kemuning-sako-kalidoni',
+      name: 'Pijat Panggilan Kemuning, Sako & Kalidoni Palembang',
+      title: 'Pijat Panggilan Kemuning, Sako & Kalidoni Palembang 24 Jam',
+      desc: 'Layanan pijat panggilan ke rumah & hotel di Kemuning, Sako, Kalidoni, Kenten, dan Sekip Palembang. Dekat hub operasional, respon cepat tiba.',
+      landmarks: 'Sekip Jaya, Kenten, Jl. R. Sukamto, Pipa Reja, Kompleks Perumahan Pusri, Simpang Dogan, Celentang',
+      hotels: ['Novotel Palembang Hotel & Residence', 'Harper Palembang', 'Swiss-Belinn Rajawali Palembang'],
+      eta: '25–35 Menit',
+    },
+    {
+      slug: 'seberang-ulu-jakabaring',
+      name: 'Pijat Panggilan Seberang Ulu & Jakabaring Palembang',
+      title: 'Pijat Panggilan Jakabaring & Seberang Ulu Palembang 24 Jam',
+      desc: 'Jasa pijat panggilan ke hotel & wisma di Jakabaring Sport City dan Seberang Ulu Palembang. On-call ke Wyndham Opi Mall dan Plaju.',
+      landmarks: 'Kompleks Jakabaring Sport City, Plaju, Kertapati, OPI Mall, Seberang Ulu I, Seberang Ulu II, Silaberanti',
+      hotels: ['Wyndham Opi Hotel Palembang', 'Wisma Atlet Jakabaring', 'Penginapan Sekitar Plaju'],
+      eta: '35–50 Menit',
+    },
+  ];
+
+  return areaList.map((area) => ({
+    params: { slug: area.slug },
+    props: { area },
+  }));
+}
+
+const { area } = Astro.props;
+const siteUrl = 'https://pijatpanggilanpalembang.web.id';
+const pageUrl = `${siteUrl}/area/${area.slug}/`;
+
+const areaSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: area.name,
+  description: area.desc,
+  provider: {
+    '@type': 'HealthAndBeautyBusiness',
+    name: 'Sriwijaya Massage Palembang',
+    url: siteUrl,
+  },
+  areaServed: {
+    '@type': 'AdministrativeArea',
+    name: area.name,
+  },
+};
+---
+
+<BaseLayout
+  title={area.title}
+  description={area.desc}
+  canonicalUrl={pageUrl}
+  schema={areaSchema}
+>
+  <div class="bg-gray-100 border-b border-gray-200 py-3 text-xs text-gray-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2">
+      <a href="/" class="hover:text-orange-600">Beranda</a>
+      <span>/</span>
+      <a href="/area/" class="hover:text-orange-600">Area</a>
+      <span>/</span>
+      <span class="text-gray-900 font-semibold">{area.slug}</span>
+    </div>
+  </div>
+
+  <header class="bg-gradient-to-b from-orange-950 via-orange-900 to-gray-900 text-white py-14">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+      <span class="inline-block bg-orange-800 text-orange-200 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+        Area Layanan Bebas Ongkir
+      </span>
+      <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
+        {area.name}
+      </h1>
+      <p class="text-base sm:text-lg text-orange-100 leading-relaxed">
+        {area.desc}
+      </p>
+    </div>
+  </header>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      
+      <main class="lg:col-span-8 space-y-10">
+        
+        <section class="bg-white p-6 rounded-2xl border border-gray-200 space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">Informasi Kedatangan Armada di Wilayah Ini</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+            <div class="p-4 bg-orange-50 rounded-xl">
+              <span class="text-xs text-orange-800 font-semibold block">Estimasi Waktu Tiba:</span>
+              <span class="text-lg font-black text-orange-950">{area.eta}</span>
+            </div>
+            <div class="p-4 bg-orange-50 rounded-xl">
+              <span class="text-xs text-orange-800 font-semibold block">Ongkos Transport:</span>
+              <span class="text-lg font-black text-orange-950">Gratis (All-in)</span>
+            </div>
+            <div class="p-4 bg-orange-50 rounded-xl">
+              <span class="text-xs text-orange-800 font-semibold block">Sistem Pembayaran:</span>
+              <span class="text-lg font-black text-orange-950">Tanpa DP (Bayar Pasca Pijat)</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">Jangkauan Hotel & Penginapan Populer</h2>
+          <p class="text-sm text-gray-600">
+            Terapis kami terbiasa memenuhi panggilan ke hotel-hotel terkemuka di area ini dengan prosedur izin resepsionis yang tertib dan santun:
+          </p>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {area.hotels.map((h) => (
+              <div class="p-3 bg-gray-50 border border-gray-200 rounded-xl text-xs font-semibold text-gray-800 flex items-center gap-2">
+                <span class="text-orange-600">🏢</span>
+                <span>{h}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">Cakupan Kelurahan & Perumahan</h2>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Selain hotel, kami juga melayani perumahan tapak, indekos, serta apartemen di sepanjang koridor: <br />
+            <strong class="text-gray-900">{area.landmarks}</strong>.
+          </p>
+          <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl text-xs text-gray-700 space-y-2">
+            <p><strong>Tips Memesan ke Rumah di Area Ini:</strong> Untuk perumahan dengan portal keamanan gerbang cluster (one-gate system), Anda dapat menginformasikan nama blok dan nomor rumah kepada admin agar terapis mudah mengonfirmasi kepada petugas satpam.</p>
+          </div>
+        </section>
+
+        <!-- Silo Layanan -->
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">Menu Terapi yang Dapat Anda Pesan</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/layanan/pijat-tradisional/" class="p-4 bg-white border border-gray-200 rounded-xl hover:border-orange-500 transition-colors block">
+              <h3 class="font-bold text-sm text-gray-900">Pijat Tradisional Full Body</h3>
+              <p class="text-xs text-gray-500 mt-1">Mulai Rp 150.000 / 60 Menit • Urut capek & masuk angin</p>
+            </a>
+            <a href="/layanan/pijat-panggilan-hotel-24-jam/" class="p-4 bg-white border border-gray-200 rounded-xl hover:border-orange-500 transition-colors block">
+              <h3 class="font-bold text-sm text-gray-900">Pijat Hotel On-Call 24 Jam</h3>
+              <p class="text-xs text-gray-500 mt-1">Mulai Rp 200.000 / 60 Menit • Tiba cepat di kamar Anda</p>
+            </a>
+            <a href="/layanan/pijat-panggilan-ke-rumah/" class="p-4 bg-white border border-gray-200 rounded-xl hover:border-orange-500 transition-colors block">
+              <h3 class="font-bold text-sm text-gray-900">Home Service Bawa Matras Sendiri</h3>
+              <p class="text-xs text-gray-500 mt-1">Mulai Rp 240.000 / 90 Menit • Higienis kasur Anda tetap bersih</p>
+            </a>
+            <a href="/layanan/body-scrub-kerokan/" class="p-4 bg-white border border-gray-200 rounded-xl hover:border-orange-500 transition-colors block">
+              <h3 class="font-bold text-sm text-gray-900">Paket Lulur Zaitun & Kerokan</h3>
+              <p class="text-xs text-gray-500 mt-1">Mulai Rp 220.000 / 90 Menit • Atasi kembung meriang</p>
+            </a>
+          </div>
+        </section>
+
+        <GoogleSourcePreferences />
+      </main>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 sticky top-24 space-y-6">
+        <div class="bg-gradient-to-br from-orange-950 to-gray-900 text-white p-6 rounded-2xl shadow-xl space-y-4 border border-orange-700/50">
+          <span class="inline-block bg-orange-500 text-white font-black text-[10px] uppercase px-2.5 py-0.5 rounded-full">
+            Area {area.slug}
+          </span>
+          <h3 class="text-lg font-bold text-white">Panggil Terapis ke Lokasi Ini</h3>
+          <p class="text-xs text-orange-200">
+            Kirimkan nama hotel/alamat lengkap Anda di area ini melalui sistem reservasi.
+          </p>
+
+          <a
+            href="/booking/"
+            class="w-full flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-xs py-3.5 rounded-xl shadow transition-transform hover:scale-105"
+          >
+            <span>Isi Form Booking Area Ini</span>
+          </a>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,26 @@
+---
+interface Props {
+  defaultMessage?: string;
+}
+
+const {
+  defaultMessage = 'Halo Admin Sriwijaya Massage, saya ingin pesan layanan pijat panggilan di Palembang.',
+} = Astro.props;
+
+const waUrl = `https://wa.me/6281278901234?text=${encodeURIComponent(defaultMessage)}`;
+---
+
+<!-- Floating Mobile WhatsApp Sticky Bar -->
+<aside aria-label="WhatsApp Floating Action" class="fixed bottom-4 right-4 z-50 md:hidden">
+  <a
+    href={waUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white font-bold px-4 py-3 rounded-full shadow-2xl border-2 border-white transition-transform active:scale-95"
+  >
+    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.303-.058.116-.087.188-.173.289l-.26.303c-.087.087-.179.182-.077.357.101.174.45 1.055 1.22 1.741.989.882 1.821 1.155 2.081 1.285.26.13.413.115.564-.058.151-.173.649-.757.822-1.017.173-.26.347-.217.578-.13.231.087 1.467.692 1.72 1.017.253.325.253.607.11 1.012z"/>
+    </svg>
+    <span class="text-sm">Pesan WA 24 Jam</span>
+  </a>
+</aside>

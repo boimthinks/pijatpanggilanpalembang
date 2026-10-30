@@ -1,0 +1,142 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppCTA from '../components/WhatsAppCTA.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonicalUrl?: string;
+  type?: 'website' | 'article';
+  schema?: object | object[];
+}
+
+const {
+  title,
+  description,
+  image = '/images/og-image.webp',
+  canonicalUrl = Astro.url.href,
+  type = 'website',
+  schema,
+} = Astro.props;
+
+const siteUrl = 'https://pijatpanggilanpalembang.web.id';
+const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
+
+// Master LocalBusiness & Organization Schema (2026 Compliant)
+const defaultLocalBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HealthAndBeautyBusiness',
+  '@id': `${siteUrl}/#business`,
+  name: 'Sriwijaya Massage Palembang',
+  alternateName: 'Pijat Panggilan Palembang 24 Jam',
+  url: siteUrl,
+  logo: `${siteUrl}/images/og-image.webp`,
+  image: `${siteUrl}/images/hero-pijat-palembang.webp`,
+  description: 'Layanan jasa pijat panggilan, urut tradisional Nusantara, reflexology, dan spa kebugaran resmi 24 jam ke rumah, hotel, dan apartemen di Kota Palembang.',
+  telephone: '+6281278901234',
+  priceRange: 'Rp 140.000 - Rp 300.000',
+  currenciesAccepted: 'IDR',
+  paymentAccepted: 'Cash, Credit Card, Bank Transfer, QRIS',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Jl. Jenderal Sudirman No. 128, Sekip Jaya',
+    addressLocality: 'Kota Palembang',
+    addressRegion: 'Sumatera Selatan',
+    postalCode: '30128',
+    addressCountry: 'ID',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: -2.9761,
+    longitude: 104.7578,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: '00:00',
+      closes: '23:59',
+    },
+  ],
+  areaServed: [
+    { '@type': 'AdministrativeArea', name: 'Kota Palembang' },
+    { '@type': 'AdministrativeArea', name: 'Ilir Timur' },
+    { '@type': 'AdministrativeArea', name: 'Ilir Barat' },
+    { '@type': 'AdministrativeArea', name: 'Sukarami' },
+    { '@type': 'AdministrativeArea', name: 'Kemuning' },
+    { '@type': 'AdministrativeArea', name: 'Jakabaring' },
+  ],
+};
+
+const defaultWebSiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${siteUrl}/#website`,
+  url: siteUrl,
+  name: 'Sriwijaya Massage Palembang',
+  description: 'Pusat Pemesanan Pijat Panggilan Resmi 24 Jam di Kota Palembang',
+  publisher: {
+    '@id': `${siteUrl}/#business`,
+  },
+};
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:site_name" content="Sriwijaya Massage Palembang" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullImageUrl} />
+
+    <!-- View Transitions Modern (ClientRouter) -->
+    <ClientRouter />
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(defaultWebSiteSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(defaultLocalBusinessSchema)} />
+    {schema && (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
+
+    <slot name="head" />
+  </head>
+  <body class="flex flex-col min-h-screen text-gray-900 bg-gray-50 antialiased selection:bg-orange-500 selection:text-white">
+    <Navbar />
+    
+    <main class="flex-grow">
+      <slot />
+    </main>
+
+    <Footer />
+    <WhatsAppCTA />
+  </body>
+</html>

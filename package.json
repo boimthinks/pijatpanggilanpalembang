@@ -1,0 +1,19 @@
+{
+  "name": "pijatpanggilanpalembang",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "prebuild": "node scripts/generate-images.js",
+    "build": "node scripts/generate-images.js && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "@tailwindcss/vite": "^4.0.0",
+    "astro": "^5.0.0",
+    "sharp": "^0.33.5",
+    "tailwindcss": "^4.0.0"
+  }
+}

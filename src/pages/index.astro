@@ -1,0 +1,342 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { servicesData } from '../data/services';
+import GoogleSourcePreferences from '../components/GoogleSourcePreferences.astro';
+
+const homeSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Pijat Panggilan dan Urut Tradisional Palembang',
+  provider: {
+    '@type': 'HealthAndBeautyBusiness',
+    name: 'Sriwijaya Massage Palembang',
+  },
+  areaServed: {
+    '@type': 'City',
+    name: 'Kota Palembang',
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Layanan Terapi Pijat Kebugaran Palembang',
+    itemListElement: servicesData.map((s) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: s.title,
+        description: s.shortDesc,
+        url: `https://pijatpanggilanpalembang.web.id/layanan/${s.slug}/`,
+      },
+    })),
+  },
+};
+---
+
+<BaseLayout
+  title="Pijat Panggilan Palembang 24 Jam | Terapis Resmi ke Rumah & Hotel"
+  description="Layanan jasa pijat panggilan 24 jam di Palembang. Terapis bersertifikat BNSP & berizin STPT tiba dalam 30-45 menit ke hotel atau rumah. Bayar pasca terapi tanpa DP."
+  image="/images/og-image.webp"
+  schema={homeSchema}
+>
+  <!-- HERO SECTION -->
+  <section class="relative bg-gradient-to-b from-orange-950 via-orange-900 to-gray-900 text-white pt-12 pb-20 overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(234,88,12,0.15),transparent_50%)] pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Text Hero (Col 7) -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 bg-orange-800/80 border border-orange-600/50 text-orange-200 text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-orange-400 animate-ping"></span>
+            Siaga 24 Jam Non-Stop Kota Palembang
+          </div>
+          
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
+            Pijat Panggilan Palembang <span class="text-orange-400">Tiba 30 Menit</span> Langsung ke Rumah dan Hotel
+          </h1>
+
+          <p class="text-base sm:text-lg text-orange-100/90 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            Pulihkan stamina tubuh yang pegal linu dengan sentuhan terapis profesional bersertifikat resmi BNSP. Melayani kunjungan ke hotel berbintang, rumah residensial, apartemen, dan indekos tanpa biaya transport tambahan.
+          </p>
+
+          <!-- Value Badges -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 text-left">
+            <div class="bg-white/5 border border-white/10 rounded-xl p-3 backdrop-blur-sm">
+              <span class="block text-orange-400 font-extrabold text-sm sm:text-base">Tanpa DP</span>
+              <span class="text-xs text-gray-300">Bayar selesai sesi terapi</span>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-3 backdrop-blur-sm">
+              <span class="block text-orange-400 font-extrabold text-sm sm:text-base">Gratis Ongkir</span>
+              <span class="text-xs text-gray-300">All-in 16 kecamatan</span>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-3 backdrop-blur-sm col-span-2 sm:col-span-1">
+              <span class="block text-orange-400 font-extrabold text-sm sm:text-base">Resmi & Keluarga</span>
+              <span class="text-xs text-gray-300">Tolak keras asusila</span>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+            <a
+              href="/booking/"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base px-7 py-4 rounded-xl shadow-lg transition-transform hover:scale-105"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <span>Booking Terapis Sekarang</span>
+            </a>
+            <a
+              href="/tarif/"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold text-base px-6 py-4 rounded-xl border border-white/20 transition-colors"
+            >
+              <span>Lihat Tarif Lengkap</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Visual Hero (Rasio 4:3 800x600 WebP) (Col 5) -->
+        <div class="lg:col-span-5">
+          <div class="relative mx-auto max-w-md lg:max-w-none">
+            <div class="aspect-4-3 rounded-2xl overflow-hidden shadow-2xl border-2 border-orange-500/30 bg-orange-950">
+              <img
+                src="/images/hero-pijat-palembang.webp"
+                alt="Jasa Pijat Panggilan Palembang 24 Jam"
+                width="800"
+                height="600"
+                class="w-full h-full object-cover"
+                loading="eager"
+              />
+            </div>
+            
+            <!-- Floating Badge Card -->
+            <div class="absolute -bottom-6 -left-4 sm:left-6 bg-white text-gray-900 rounded-xl p-4 shadow-xl border border-gray-100 flex items-center gap-3">
+              <div class="w-12 h-12 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center font-black text-xl">
+                4.9
+              </div>
+              <div>
+                <div class="flex text-amber-400 text-xs">★★★★★</div>
+                <p class="font-bold text-sm">Rating Kepuasan Pelanggan</p>
+                <p class="text-[11px] text-gray-500">5.000+ Tamu Hotel & Warga Palembang</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 PILAR LAYANAN UTAMA (MONEY PAGES - 4:3 CARDS) -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <h2 class="text-xs font-bold text-orange-600 uppercase tracking-widest">Pilihan Terapi Kebugaran</h2>
+        <p class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
+          Layanan Pijat Panggilan Resmi di Kota Palembang
+        </p>
+        <p class="text-base text-gray-600">
+          Setiap menu dirancang untuk meredakan ketegangan otot, melancarkan peredaran darah, dan mengembalikan energi tanpa repot keluar kamar.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {servicesData.map((service) => (
+          <article class="bg-white rounded-2xl overflow-hidden border border-gray-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group">
+            <!-- 4:3 Image Container (Clickable) -->
+            <a href={`/layanan/${service.slug}/`} class="aspect-4-3 bg-gray-100 overflow-hidden relative block group-hover:opacity-95 transition-opacity" aria-label={`Lihat layanan ${service.title}`}>
+              <img
+                src={service.heroImage}
+                alt={service.title}
+                width="800"
+                height="600"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+              <span class="absolute top-3 left-3 bg-gray-900/80 backdrop-blur-sm text-orange-400 text-[11px] font-bold px-2.5 py-1 rounded-md">
+                All-in Free Transport
+              </span>
+            </a>
+
+            <!-- Content Card -->
+            <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+              <div>
+                <h3 class="text-xl font-bold text-gray-900 group-hover:text-orange-600 transition-colors leading-snug">
+                  <a href={`/layanan/${service.slug}/`}>
+                    {service.title}
+                  </a>
+                </h3>
+                <p class="text-sm text-gray-600 mt-2 line-clamp-3 leading-relaxed">
+                  {service.shortDesc}
+                </p>
+              </div>
+
+              <!-- Package Snapshot -->
+              <div class="pt-3 border-t border-gray-100">
+                <div class="flex items-center justify-between text-xs text-gray-500 mb-3">
+                  <span>Mulai dari:</span>
+                  <span class="text-base font-extrabold text-orange-700">
+                    {service.packages[0]?.price}
+                  </span>
+                </div>
+                <a
+                  href={`/layanan/${service.slug}/`}
+                  class="w-full inline-flex items-center justify-center gap-2 bg-orange-50 hover:bg-orange-600 text-orange-800 hover:text-white font-bold text-xs py-2.5 rounded-xl transition-colors"
+                >
+                  <span>Lihat Rincian & Paket</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PREFERENSI GENDER TERAPIS (PRIA & WANITA) -->
+  <section class="py-16 bg-white border-y border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        
+        <!-- Card Terapis Pria -->
+        <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden flex flex-col sm:flex-row items-center gap-6">
+          <a href="/terapis/pria/" class="w-36 h-28 sm:w-44 sm:h-32 aspect-4-3 shrink-0 rounded-xl overflow-hidden border border-slate-700 block hover:opacity-90 transition" aria-label="Lihat profil Terapis Pria">
+            <img src="/images/terapis-pria.webp" alt="Terapis Pria Profesional Palembang" width="800" height="600" class="w-full h-full object-cover" />
+          </a>
+          <div class="space-y-2 text-center sm:text-left">
+            <span class="text-xs font-bold text-orange-400 uppercase tracking-widest">Kekuatan & Stamina</span>
+            <h3 class="text-xl font-bold">Layanan Terapis Pria</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Tekanan bertenaga kuat untuk mengatasi otot pundak tegang, pegal pinggang pekerja lapangan, dan cedera kelelahan olahraga.
+            </p>
+            <a href="/terapis/pria/" class="inline-flex items-center gap-1.5 text-xs font-bold text-orange-400 hover:underline pt-1">
+              <span>Profil Terapis Pria →</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card Terapis Wanita -->
+        <div class="bg-gradient-to-br from-rose-950 to-pink-950 rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden flex flex-col sm:flex-row items-center gap-6">
+          <a href="/terapis/wanita/" class="w-36 h-28 sm:w-44 sm:h-32 aspect-4-3 shrink-0 rounded-xl overflow-hidden border border-pink-900 block hover:opacity-90 transition" aria-label="Lihat profil Terapis Wanita">
+            <img src="/images/terapis-wanita.webp" alt="Terapis Wanita Ramah & Aman Palembang" width="800" height="600" class="w-full h-full object-cover" />
+          </a>
+          <div class="space-y-2 text-center sm:text-left">
+            <span class="text-xs font-bold text-pink-300 uppercase tracking-widest">Privasi & Kenyamanan</span>
+            <h3 class="text-xl font-bold">Layanan Terapis Wanita</h3>
+            <p class="text-xs text-pink-100 leading-relaxed">
+              Khusus melayani pelanggan wanita, ibu rumah tangga, dan muslimah (syar'i) dengan etika sopan, lembut, dan menjaga privasi 100%.
+            </p>
+            <a href="/terapis/wanita/" class="inline-flex items-center gap-1.5 text-xs font-bold text-pink-300 hover:underline pt-1">
+              <span>Profil Terapis Wanita →</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CAKUPAN WILAYAH PALEMBANG (GEO-TARGETING) -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="text-xs font-bold text-orange-600 uppercase tracking-widest">Jangkauan Armada 24 Jam</h2>
+        <p class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight mt-1">
+          Area Layanan Pijat Panggilan se-Kota Palembang
+        </p>
+        <p class="text-sm text-gray-600 mt-2">
+          Armada terapis kami standby di titik-titik strategis untuk memastikan estimasi tiba hanya dalam 30–45 menit tanpa biaya transport tambahan.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <a href="/area/ilir-timur/" class="bg-white p-5 rounded-xl border border-gray-200 hover:border-orange-500 hover:shadow-md transition-all text-center group">
+          <span class="block font-bold text-gray-900 group-hover:text-orange-600 text-sm">Ilir Timur</span>
+          <span class="block text-[11px] text-gray-500 mt-1">Sudirman, Veteran, Rajawali</span>
+        </a>
+        <a href="/area/ilir-barat/" class="bg-white p-5 rounded-xl border border-gray-200 hover:border-orange-500 hover:shadow-md transition-all text-center group">
+          <span class="block font-bold text-gray-900 group-hover:text-orange-600 text-sm">Ilir Barat</span>
+          <span class="block text-[11px] text-gray-500 mt-1">Demang, Bukit Besar, Polygon</span>
+        </a>
+        <a href="/area/sukarami-bandara/" class="bg-white p-5 rounded-xl border border-gray-200 hover:border-orange-500 hover:shadow-md transition-all text-center group">
+          <span class="block font-bold text-gray-900 group-hover:text-orange-600 text-sm">Sukarami</span>
+          <span class="block text-[11px] text-gray-500 mt-1">Bandara SMB II, CitraGrand</span>
+        </a>
+        <a href="/area/kemuning-sako-kalidoni/" class="bg-white p-5 rounded-xl border border-gray-200 hover:border-orange-500 hover:shadow-md transition-all text-center group">
+          <span class="block font-bold text-gray-900 group-hover:text-orange-600 text-sm">Kemuning & Sako</span>
+          <span class="block text-[11px] text-gray-500 mt-1">Sekip, Kenten, Kalidoni</span>
+        </a>
+        <a href="/area/seberang-ulu-jakabaring/" class="bg-white p-5 rounded-xl border border-gray-200 hover:border-orange-500 hover:shadow-md transition-all text-center group col-span-2 sm:col-span-1">
+          <span class="block font-bold text-gray-900 group-hover:text-orange-600 text-sm">Seberang Ulu</span>
+          <span class="block text-[11px] text-gray-500 mt-1">Jakabaring Sport City, Plaju</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST & ETHICS PLEDGE -->
+  <section class="py-16 bg-orange-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center space-y-4">
+        <span class="inline-block px-3 py-1 bg-orange-800 text-orange-200 rounded-full text-xs font-bold uppercase tracking-wider">
+          Standar Etika & Legalitas
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">
+          Komitmen Layanan Pijat Kebugaran Resmi Keluarga
+        </h2>
+        <p class="text-sm sm:text-base text-orange-100 leading-relaxed">
+          Sriwijaya Massage Palembang beroperasi di bawah pengawasan Surat Terdaftar Pengobat Tradisional (STPT) Dinas Kesehatan Kota Palembang. Seluruh terapis terikat kode etik ketat: <strong>DILARANG KERAS</strong> melayani permintaan asusila, vitalitas berisiko, atau hal-hal di luar terapi kesehatan resmi.
+        </p>
+        <div class="pt-4 flex flex-wrap items-center justify-center gap-6 text-xs text-orange-200">
+          <span class="flex items-center gap-1.5">✓ Terapis Bersertifikasi BNSP</span>
+          <span class="flex items-center gap-1.5">✓ Izin Resmi STPT Dinkes</span>
+          <span class="flex items-center gap-1.5">✓ Tanpa DP (Bayar Selesai)</span>
+          <span class="flex items-center gap-1.5">✓ Matras Lipat Higienis</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 space-y-2">
+        <h2 class="text-xs font-bold text-orange-600 uppercase tracking-widest">Tanya Jawab Populer</h2>
+        <p class="text-3xl font-extrabold text-gray-900 tracking-tight">Pertanyaan Seputar Pijat Panggilan Palembang</p>
+      </div>
+
+      <div class="space-y-4">
+        <div class="border border-gray-200 rounded-xl p-5">
+          <h3 class="font-bold text-base text-gray-900">Berapa lama terapis bisa sampai ke lokasi saya di Palembang?</h3>
+          <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+            Untuk kawasan hotel berbintang dan pusat kota (Sudirman, R. Sukamto, Basuki Rahmat), terapis rata-rata tiba dalam 30–45 menit. Untuk perumahan kawasan pinggiran, estimasi berkisar antara 45–60 menit.
+          </p>
+        </div>
+
+        <div class="border border-gray-200 rounded-xl p-5">
+          <h3 class="font-bold text-base text-gray-900">Apakah saya perlu membayar uang muka (DP) terlebih dahulu?</h3>
+          <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+            Tidak. Kami menerapkan sistem pembayaran pasca terapi. Anda hanya membayar setelah sesi terapi pijat selesai di lokasi Anda melalui tunai, transfer, atau QRIS.
+          </p>
+        </div>
+
+        <div class="border border-gray-200 rounded-xl p-5">
+          <h3 class="font-bold text-base text-gray-900">Apakah ada biaya tambahan untuk ongkos transport terapis?</h3>
+          <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+            Tidak ada. Seluruh tarif yang disepakati melalui sistem booking adalah harga all-in gratis biaya transportasi ke seluruh wilayah dalam Kota Palembang.
+          </p>
+        </div>
+
+        <div class="border border-gray-200 rounded-xl p-5">
+          <h3 class="font-bold text-base text-gray-900">Apakah terapis membawa perlengkapan sendiri?</h3>
+          <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+            Ya. Terapis kami membawa minyak aromaterapi zaitun alami, disinfektan, kain penutup badan bersih, serta opsi matras lipat busa portabel dan sprei disposable sekali pakai untuk layanan ke rumah.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

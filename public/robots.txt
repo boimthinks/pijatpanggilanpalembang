@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pijatpanggilanpalembang.web.id/sitemap-index.xml
+Disallow: /api/
+
+# LLM & AI Discoverability
+# LLMS-TXT: https://pijatpanggilanpalembang.web.id/llms.txt
+# LLMS-FULL-TXT: https://pijatpanggilanpalembang.web.id/llms-full.txt

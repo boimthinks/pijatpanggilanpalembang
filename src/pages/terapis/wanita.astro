@@ -1,0 +1,175 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GoogleSourcePreferences from '../../components/GoogleSourcePreferences.astro';
+
+const pageTitle = "Layanan Terapis Wanita Ramah & Aman Palembang | Khusus Pelanggan Wanita";
+const pageDesc = "Jasa terapis wanita bersertifikat BNSP di Palembang. Khusus pelanggan wanita, ibu rumah tangga, dan muslimah (syar'i). Privasi 100% terjaga dan aman.";
+const pageUrl = "https://pijatpanggilanpalembang.web.id/terapis/wanita/";
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Layanan Terapis Wanita Palembang',
+    description: pageDesc,
+    provider: {
+      '@type': 'HealthAndBeautyBusiness',
+      name: 'Sriwijaya Massage Palembang',
+    },
+    areaServed: {
+      '@type': 'City',
+      name: 'Kota Palembang',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Beranda', item: 'https://pijatpanggilanpalembang.web.id/' },
+      { '@type': 'ListItem', position: 2, name: 'Terapis', item: 'https://pijatpanggilanpalembang.web.id/terapis/' },
+      { '@type': 'ListItem', position: 3, name: 'Terapis Wanita', item: pageUrl },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDesc}
+  image="/images/terapis-wanita.webp"
+  canonicalUrl={pageUrl}
+  schema={schema}
+>
+  <div class="bg-gray-100 border-b border-gray-200 py-3 text-xs text-gray-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2">
+      <a href="/" class="hover:text-orange-600">Beranda</a>
+      <span>/</span>
+      <a href="/terapis/" class="hover:text-orange-600">Terapis</a>
+      <span>/</span>
+      <span class="text-gray-900 font-semibold">Terapis Wanita</span>
+    </div>
+  </div>
+
+  <header class="bg-gradient-to-b from-rose-950 via-pink-950 to-gray-900 text-white py-14">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+      <span class="inline-block bg-rose-900 text-pink-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+        Privasi 100% Terjaga & Syar'i
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+        Layanan Terapis Wanita Ramah & Aman Palembang
+      </h1>
+      <p class="text-base sm:text-lg text-pink-100 leading-relaxed">
+        Solusi relaksasi eksklusif bagi ibu rumah tangga, mahasiswi, karyawati, dan muslimah di Kota Palembang. Dikerjakan oleh sesama wanita dengan kelembutan, ketelitian, dan integritas tinggi.
+      </p>
+    </div>
+  </header>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      
+      <main class="lg:col-span-8 space-y-10">
+        <!-- Image 4:3 -->
+        <div class="aspect-4-3 bg-gray-100 rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
+          <img
+            src="/images/terapis-wanita.webp"
+            alt="Terapis Wanita Ramah & Aman Palembang"
+            width="800"
+            height="600"
+            class="w-full h-full object-cover"
+          />
+        </div>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">Jaminan Keamanan & Kenyamanan Pelanggan Wanita</h2>
+          <p class="text-sm text-gray-700 leading-relaxed">
+            Kami memahami sepenuhnya bahwa memanggil terapis ke kediaman pribadi membutuhkan rasa tenang tanpa rasa was-was. Divisi terapis wanita kami menerapkan standar operasional yang ketat:
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <div class="p-4 bg-white border border-rose-100 rounded-xl space-y-1">
+              <h3 class="font-bold text-sm text-rose-900">Khusus Sesama Perempuan</h3>
+              <p class="text-xs text-gray-600 leading-relaxed">Terapis wanita kami hanya ditugaskan melayani pelanggan berjenis kelamin wanita demi menjaga aurat, nilai syar'i, dan privasi penuh.</p>
+            </div>
+            <div class="p-4 bg-white border border-rose-100 rounded-xl space-y-1">
+              <h3 class="font-bold text-sm text-rose-900">Etika Santun & Berseragam Rapi</h3>
+              <p class="text-xs text-gray-600 leading-relaxed">Terapis hadir dengan seragam resmi, tanda pengenal, bertutur kata sopan, dan menjaga ketenangan suasana rumah.</p>
+            </div>
+            <div class="p-4 bg-white border border-rose-100 rounded-xl space-y-1">
+              <h3 class="font-bold text-sm text-rose-900">Keahlian Spa & Totok Wajah</h3>
+              <p class="text-xs text-gray-600 leading-relaxed">Terlatih dalam ritual lulur zaitun eksfoliasi kulit, totok wajah aura relaksasi, dan urut relaksasi aromaterapi.</p>
+            </div>
+            <div class="p-4 bg-white border border-rose-100 rounded-xl space-y-1">
+              <h3 class="font-bold text-sm text-rose-900">Higienitas Alat Terjamin</h3>
+              <p class="text-xs text-gray-600 leading-relaxed">Membawa kain alas bersih steril, minyak wangi aromatik zaitun yang lembut di kulit, dan hand sanitizer.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Menu Favorit Pelanggan Wanita -->
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">Paket Favorit Pelanggan Wanita</h2>
+          <div class="space-y-3">
+            <div class="p-5 bg-white border border-gray-200 rounded-xl flex items-center justify-between">
+              <div>
+                <h4 class="font-bold text-sm text-gray-900">Pijat Relaksasi Aromaterapi Lavender (90 Menit)</h4>
+                <p class="text-xs text-gray-500">Urut lembut pelemasan otot pundak, pinggang & kaki</p>
+              </div>
+              <span class="text-rose-800 font-extrabold text-sm">Rp 200.000</span>
+            </div>
+            <div class="p-5 bg-white border border-gray-200 rounded-xl flex items-center justify-between">
+              <div>
+                <h4 class="font-bold text-sm text-gray-900">Paket Kombo Pijat + Lulur Body Scrub Zaitun (120 Menit)</h4>
+                <p class="text-xs text-gray-500">Full body massage + eksfoliasi sel kulit mati Mustika Ratu</p>
+              </div>
+              <span class="text-rose-800 font-extrabold text-sm">Rp 260.000</span>
+            </div>
+            <div class="p-5 bg-white border border-gray-200 rounded-xl flex items-center justify-between">
+              <div>
+                <h4 class="font-bold text-sm text-gray-900">Paket Royal Spa Pijat dan Totok Wajah (120 Menit)</h4>
+                <p class="text-xs text-gray-500">Pijat tubuh menyeluruh + totok akupresur titik wajah segar</p>
+              </div>
+              <span class="text-rose-800 font-extrabold text-sm">Rp 280.000</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">FAQ Terapis Wanita</h2>
+          <div class="space-y-3">
+            <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl">
+              <h4 class="font-bold text-xs text-gray-900">Apakah terapis wanita aman datang ke kos putri atau rumah saat suami kerja?</h4>
+              <p class="text-xs text-gray-600 mt-1">Sangat aman. Seluruh riwayat terapis wanita kami terverifikasi identitas KTP dan sertifikasi BNSP resmi.</p>
+            </div>
+            <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl">
+              <h4 class="font-bold text-xs text-gray-900">Apakah terapis wanita bisa melayani pelanggan pria?</h4>
+              <p class="text-xs text-gray-600 mt-1">Untuk pelanggan pria lajang yang sendirian di kamar hotel/kost, kami memprioritaskan terapis pria demi kepatuhan kode etik kebugaran keluarga.</p>
+            </div>
+          </div>
+        </section>
+
+        <GoogleSourcePreferences />
+      </main>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 sticky top-24 space-y-6">
+        <div class="bg-gradient-to-br from-rose-950 to-pink-950 text-white p-6 rounded-2xl shadow-xl space-y-4 border border-rose-800">
+          <span class="inline-block bg-pink-400 text-pink-950 font-black text-[10px] uppercase px-2.5 py-0.5 rounded-full">
+            Divisi Khusus Wanita
+          </span>
+          <h3 class="text-lg font-bold text-white">Order Terapis Wanita</h3>
+          <p class="text-xs text-pink-200">
+            Pesan terapis wanita ramah ke rumah, apartemen, atau hotel Anda di Palembang.
+          </p>
+
+          <a
+            href="/booking/"
+            class="w-full flex items-center justify-center gap-2 bg-pink-400 hover:bg-pink-300 text-pink-950 font-extrabold text-xs py-3 rounded-xl shadow transition-transform hover:scale-105"
+          >
+            <span>Isi Form Booking Terapis Wanita</span>
+          </a>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</BaseLayout>

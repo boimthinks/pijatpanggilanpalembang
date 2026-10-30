@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+interface AreaInfo {
+  slug: string;
+  name: string;
+  districts: string;
+  eta: string;
+  highlights: string[];
+}
+
+export const areas: AreaInfo[] = [
+  {
+    slug: 'ilir-timur',
+    name: 'Ilir Timur (Sudirman, Veteran, Rajawali)',
+    districts: 'Ilir Timur I, II, III, Jl. Jend Sudirman, Veteran, Rajawali, Duku, KM 3.5 - KM 5',
+    eta: '25–35 Menit',
+    highlights: ['Pusat Hotel Bintang & Bisnis', 'Aryaduta, The Zuri, Aston Palembang', 'Bebas Biaya Transportasi'],
+  },
+  {
+    slug: 'ilir-barat',
+    name: 'Ilir Barat & Demang Lebar Daun',
+    districts: 'Ilir Barat I, II, Demang Lebar Daun, Bukit Besar, Kawasan Perumahan Polygon, Macan Lindung',
+    eta: '30–40 Menit',
+    highlights: ['Kompleks Perumahan Keluarga', 'Kawasan Kost Kampus Unsri Bukit', 'Home Service Higienis Bawa Matras'],
+  },
+  {
+    slug: 'sukarami-bandara',
+    name: 'Sukarami & Kawasan Bandara SMB II',
+    districts: 'Sukarami, Alang-Alang Lebar, Talang Kelapa, Kebun Bunga, Kawasan Bandara SMB II, CitraGrand City',
+    eta: '30–45 Menit',
+    highlights: ['Santika Premiere Bandara', 'Perumahan Elit CitraGrand', 'Tamu Transit & Wisatawan'],
+  },
+  {
+    slug: 'kemuning-sako-kalidoni',
+    name: 'Kemuning, Sako & Kalidoni',
+    districts: 'Sekip, Kenten, Pipa Reja, Kompleks Pusri, Simpang Dogan, Celentang',
+    eta: '30–40 Menit',
+    highlights: ['Dekat Hub Operasional Kami', 'Kenten & Sukamto', 'Standby Siaga Cepat 24 Jam'],
+  },
+  {
+    slug: 'seberang-ulu-jakabaring',
+    name: 'Seberang Ulu & Jakabaring',
+    districts: 'Seberang Ulu I, II, Plaju, Kompleks Jakabaring Sport City, Kompleks OPI Mall',
+    eta: '35–50 Menit',
+    highlights: ['Wyndham OPI Mall', 'Atlet & Tamu Wisata Olahraga', 'Akses Jembatan Ampera Cepat'],
+  },
+];
+
+const pageTitle = "Cakupan Area Layanan Pijat Panggilan se-Kota Palembang 24 Jam";
+const pageDesc = "Daftar wilayah jangkauan terapis pijat panggilan Palembang. Siaga di Ilir Timur, Ilir Barat, Sukarami, Kemuning, Sako, hingga Jakabaring. Bebas ongkir.";
+---
+
+<BaseLayout title={pageTitle} description={pageDesc}>
+  <section class="bg-gradient-to-b from-orange-950 via-orange-900 to-gray-900 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <span class="inline-block px-3 py-1 bg-orange-800 text-orange-200 text-xs font-bold uppercase tracking-widest rounded-full">
+        Jangkauan 16 Kecamatan
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white">
+        Cakupan Area Pijat Panggilan Palembang
+      </h1>
+      <p class="text-base sm:text-lg text-orange-100 max-w-2xl mx-auto leading-relaxed">
+        Armada terapis kami ditempatkan secara terdesentralisasi di penjuru kota agar dapat tiba di hotel maupun rumah Anda dalam waktu 30 hingga 45 menit tanpa biaya ongkir.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {areas.map((area) => (
+          <article class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold bg-orange-100 text-orange-800 px-2.5 py-1 rounded-full">
+                  Estimasi Tiba: {area.eta}
+                </span>
+                <span class="text-xs font-semibold text-gray-500">Free Transport</span>
+              </div>
+              <h2 class="text-xl font-bold text-gray-900">
+                <a href={`/area/${area.slug}/`} class="hover:text-orange-600 transition-colors">
+                  {area.name}
+                </a>
+              </h2>
+              <p class="text-xs text-gray-600 leading-relaxed">
+                <strong>Kelurahan & Landmark:</strong> {area.districts}
+              </p>
+              <ul class="space-y-1 text-xs text-gray-700">
+                {area.highlights.map((h) => (
+                  <li class="flex items-center gap-1.5">
+                    <span class="text-orange-600 font-bold">✓</span>
+                    <span>{h}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="pt-6 mt-6 border-t border-gray-100">
+              <a
+                href={`/area/${area.slug}/`}
+                class="w-full inline-flex items-center justify-center gap-2 bg-orange-50 hover:bg-orange-600 text-orange-800 hover:text-white font-bold text-xs py-2.5 rounded-xl transition-colors"
+              >
+                <span>Lihat Layanan Area Ini →</span>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

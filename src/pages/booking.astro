@@ -1,0 +1,568 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { servicesData } from '../data/services';
+
+const pageTitle = "Formulir Pemesanan Terapis | Sriwijaya Massage Palembang";
+const pageDesc = "Formulir reservasi jasa pijat panggilan ke hotel dan rumah di Palembang. Tentukan titik lokasi via peta dan pilih dihubungi via WhatsApp, Telegram, atau Email.";
+---
+
+<BaseLayout title={pageTitle} description={pageDesc}>
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" slot="head" />
+
+  <!-- Header Banner -->
+  <section class="bg-gradient-to-b from-orange-950 via-orange-900 to-gray-900 text-white py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
+      <span class="inline-block px-3 py-1 bg-orange-800 text-orange-200 text-xs font-bold uppercase tracking-widest rounded-full">
+        Reservasi Praktis & Cepat
+      </span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+        Formulir Pemesanan Terapis
+      </h1>
+      <p class="text-sm sm:text-base text-orange-100/90 max-w-xl mx-auto leading-relaxed">
+        Silakan lengkapi data pemesanan dan tentukan titik lokasi Anda pada peta di bawah ini. Customer Service kami akan segera mengonfirmasi kedatangan terapis.
+      </p>
+    </div>
+  </section>
+
+  <!-- Booking Form Section -->
+  <section class="py-12 bg-gray-50">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="bg-white rounded-2xl p-6 sm:p-10 border border-gray-200 shadow-xl">
+        <form id="booking-form" class="space-y-8">
+          
+          <!-- 1. IDENTITAS PEMESAN -->
+          <div class="space-y-4">
+            <h2 class="text-lg font-bold text-gray-900 border-b pb-2 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-orange-100 text-orange-700 text-xs flex items-center justify-center font-bold">1</span>
+              Identitas & Kontak Anda
+            </h2>
+
+            <div>
+              <label for="customerName" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+                Nama Lengkap / Panggilan <span class="text-rose-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="customerName"
+                name="customerName"
+                required
+                placeholder="Contoh: Bpk. Budi Santoso"
+                class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm outline-none transition"
+              />
+            </div>
+
+            <!-- Pilihan Saluran Dihubungi -->
+            <div>
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
+                Bagaimana Anda Ingin Dihubungi? <span class="text-rose-500">*</span>
+              </label>
+              <div class="grid grid-cols-3 gap-3">
+                <label class="cursor-pointer border border-gray-200 rounded-xl p-3 flex flex-col items-center justify-center gap-2 text-center transition-all has-[:checked]:border-orange-600 has-[:checked]:bg-orange-50/50 has-[:checked]:ring-1 has-[:checked]:ring-orange-600 group">
+                  <input type="radio" name="contactChannel" value="whatsapp" checked class="sr-only" />
+                  <div class="w-9 h-9 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-sm shrink-0 group-hover:scale-105 transition-transform">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                    </svg>
+                  </div>
+                  <span class="text-xs font-bold text-gray-800">WhatsApp</span>
+                </label>
+
+                <label class="cursor-pointer border border-gray-200 rounded-xl p-3 flex flex-col items-center justify-center gap-2 text-center transition-all has-[:checked]:border-orange-600 has-[:checked]:bg-orange-50/50 has-[:checked]:ring-1 has-[:checked]:ring-orange-600 group">
+                  <input type="radio" name="contactChannel" value="telegram" class="sr-only" />
+                  <div class="w-9 h-9 rounded-full bg-[#24A1DE] text-white flex items-center justify-center shadow-sm shrink-0 group-hover:scale-105 transition-transform">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                      <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                    </svg>
+                  </div>
+                  <span class="text-xs font-bold text-gray-800">Telegram</span>
+                </label>
+
+                <label class="cursor-pointer border border-gray-200 rounded-xl p-3 flex flex-col items-center justify-center gap-2 text-center transition-all has-[:checked]:border-orange-600 has-[:checked]:bg-orange-50/50 has-[:checked]:ring-1 has-[:checked]:ring-orange-600 group">
+                  <input type="radio" name="contactChannel" value="email" class="sr-only" />
+                  <div class="w-9 h-9 rounded-full bg-slate-700 text-white flex items-center justify-center shadow-sm shrink-0 group-hover:scale-105 transition-transform">
+                    <svg class="w-5 h-5 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                  </div>
+                  <span class="text-xs font-bold text-gray-800">Email</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Input Detail Kontak Dinamis -->
+            <div>
+              <label for="contactDetail" id="contact-label" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+                Nomor WhatsApp <span class="text-rose-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="contactDetail"
+                name="contactDetail"
+                required
+                placeholder="Contoh: 081234567890"
+                class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm outline-none transition"
+              />
+              <p id="contact-hint" class="text-[11px] text-gray-500 mt-1">
+                Pastikan nomor WhatsApp aktif untuk menerima konfirmasi cepat dari kami.
+              </p>
+            </div>
+          </div>
+
+          <!-- 2. PILIHAN LAYANAN & DURASI -->
+          <div class="space-y-4">
+            <h2 class="text-lg font-bold text-gray-900 border-b pb-2 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-orange-100 text-orange-700 text-xs flex items-center justify-center font-bold">2</span>
+              Pilihan Layanan & Durasi
+            </h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="serviceType" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+                  Jenis Layanan <span class="text-rose-500">*</span>
+                </label>
+                <select
+                  id="serviceType"
+                  name="serviceType"
+                  required
+                  class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm outline-none transition bg-white"
+                >
+                  {servicesData.map((s) => (
+                    <option value={s.title}>{s.title}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label for="duration" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+                  Pilihan Durasi <span class="text-rose-500">*</span>
+                </label>
+                <select
+                  id="duration"
+                  name="duration"
+                  required
+                  class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm outline-none transition bg-white"
+                >
+                  <option value="60 Menit">60 Menit (Relaksasi Ringan)</option>
+                  <option value="90 Menit" selected>90 Menit (Favorit Menyeluruh)</option>
+                  <option value="120 Menit">120 Menit (Komplit / Deep Care)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Preferensi Terapis -->
+            <div>
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+                Preferensi Gender Terapis <span class="text-rose-500">*</span>
+              </label>
+              <div class="grid grid-cols-2 gap-3">
+                <label class="cursor-pointer border border-gray-200 rounded-xl py-3 px-4 text-center transition-all has-[:checked]:border-orange-600 has-[:checked]:bg-orange-50/50 has-[:checked]:ring-1 has-[:checked]:ring-orange-600">
+                  <input type="radio" name="therapistGender" value="Terapis Wanita" checked class="sr-only" />
+                  <span class="block text-sm font-bold text-gray-800">Terapis Wanita</span>
+                </label>
+                <label class="cursor-pointer border border-gray-200 rounded-xl py-3 px-4 text-center transition-all has-[:checked]:border-orange-600 has-[:checked]:bg-orange-50/50 has-[:checked]:ring-1 has-[:checked]:ring-orange-600">
+                  <input type="radio" name="therapistGender" value="Terapis Pria" class="sr-only" />
+                  <span class="block text-sm font-bold text-gray-800">Terapis Pria</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. LOKASI & WAKTU PELAYANAN -->
+          <div class="space-y-4">
+            <h2 class="text-lg font-bold text-gray-900 border-b pb-2 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-orange-100 text-orange-700 text-xs flex items-center justify-center font-bold">3</span>
+              Lokasi Koordinat & Waktu Layanan
+            </h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="locationType" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+                  Tipe Tempat <span class="text-rose-500">*</span>
+                </label>
+                <select
+                  id="locationType"
+                  name="locationType"
+                  required
+                  class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm outline-none transition bg-white"
+                >
+                  <option value="Rumah Tinggal" selected>Rumah Tinggal</option>
+                  <option value="Hotel">Hotel</option>
+                  <option value="Kamar Kost">Kamar Kost</option>
+                  <option value="Apartemen">Apartemen</option>
+                  <option value="Lainnya">Lainnya</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="bookingTime" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+                  Waktu Kedatangan <span class="text-rose-500">*</span>
+                </label>
+                <select
+                  id="bookingTime"
+                  name="bookingTime"
+                  required
+                  class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm outline-none transition bg-white"
+                >
+                  <option value="2 Jam ke Depan" selected>2 Jam ke Depan</option>
+                  <option value="Segera / Secepatnya (30-45 Menit)">Segera / Secepatnya (30–45 Menit)</option>
+                  <option value="1 Jam ke Depan">1 Jam ke Depan</option>
+                  <option value="Nanti Malam">Nanti Malam (Jadwal Khusus)</option>
+                  <option value="Besok Pagi/Siang">Besok Pagi / Siang</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- PEMILIH TITIK KOORDINAT PETA (MAP PICKER) -->
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider">
+                  Titik Koordinat Lokasi pada Peta <span class="text-rose-500">*</span>
+                </label>
+                <button
+                  type="button"
+                  id="btn-detect-location"
+                  class="inline-flex items-center gap-1.5 text-xs font-bold text-orange-600 hover:text-orange-700 bg-orange-50 hover:bg-orange-100 px-3 py-1.5 rounded-lg border border-orange-200 transition active:scale-95"
+                >
+                  <span>📍 Deteksi Lokasi Saya</span>
+                </button>
+              </div>
+
+              <!-- Map Container -->
+              <div
+                id="booking-map"
+                class="w-full h-64 sm:h-72 rounded-2xl border-2 border-gray-300 overflow-hidden shadow-inner relative z-10"
+              ></div>
+
+              <!-- Hidden Input Koordinat untuk sistem -->
+              <input
+                type="hidden"
+                id="coordinates"
+                name="coordinates"
+                value="-2.990934, 104.756554"
+              />
+
+              <!-- Detail Unit / Patokan Tambahan -->
+              <div class="pt-1">
+                <label for="unitNote" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+                  Nomor Rumah / Nama Hotel & Kamar / Patokan (Opsional)
+                </label>
+                <input
+                  type="text"
+                  id="unitNote"
+                  name="unitNote"
+                  placeholder="Contoh: Kamar 512 / Rumah pagar putih dekat pos satpam"
+                  class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm outline-none transition"
+                />
+              </div>
+
+              <div class="p-3 bg-orange-50/80 rounded-xl border border-orange-100 text-xs text-orange-950 flex items-start gap-2">
+                <span class="text-base shrink-0">📍</span>
+                <p>
+                  <strong>Titik Lokasi Presisi:</strong> Geser pin merah di peta atau ketuk langsung pada peta untuk menandai titik kedatangan terapis dengan tepat.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <label for="specialNotes" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+                Catatan Khusus / Keluhan Tubuh (Opsional)
+              </label>
+              <input
+                type="text"
+                id="specialNotes"
+                name="specialNotes"
+                placeholder="Contoh: Pinggang sangat kaku, tolong fokus di punggung dan pundak"
+                class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm outline-none transition"
+              />
+            </div>
+          </div>
+
+          <!-- Jaminan & Keamanan -->
+          <div class="p-4 bg-orange-50 rounded-xl border border-orange-200 text-xs text-orange-950 space-y-1">
+            <p class="font-bold flex items-center gap-1.5 text-orange-950">
+              <span>🛡️</span>
+              <span>Jaminan Kenyamanan & Tanpa Uang Muka (Tanpa DP)</span>
+            </p>
+            <p class="text-orange-900">
+              Seluruh pemesanan bebas uang muka. Pembayaran dilakukan secara aman setelah sesi terapi selesai melalui Tunai, Transfer, atau QRIS.
+            </p>
+          </div>
+
+          <!-- Submit Button -->
+          <div>
+            <button
+              type="submit"
+              id="submit-btn"
+              class="w-full bg-orange-600 hover:bg-orange-700 text-white font-extrabold text-base py-4 rounded-xl shadow-lg transition-transform active:scale-[0.99] flex items-center justify-center gap-2"
+            >
+              <span>Kirim Pemesanan Sekarang</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </button>
+            <p class="text-[11px] text-gray-500 text-center mt-2">
+              Data Anda aman dan hanya digunakan oleh Customer Service kami untuk konfirmasi kedatangan terapis.
+            </p>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Leaflet CSS Fallback & Leaflet JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" slot="head" />
+  <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+</BaseLayout>
+
+<style is:global>
+  @import url('https://unpkg.com/leaflet@1.9.4/dist/leaflet.css');
+
+  #booking-map {
+    width: 100%;
+    min-height: 300px;
+    z-index: 10;
+  }
+  /* Mencegah benturan Tailwind CSS reset dengan tile Leaflet */
+  #booking-map .leaflet-pane img,
+  #booking-map .leaflet-tile {
+    max-width: none !important;
+    max-height: none !important;
+  }
+  .custom-pin-marker {
+    background: transparent !important;
+    border: none !important;
+  }
+  .leaflet-tooltip-pane .leaflet-tooltip {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 8px;
+    background: rgba(17, 24, 39, 0.9);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+</style>
+
+<script>
+  let mapInstance: any = null;
+  let markerInstance: any = null;
+
+  function getLeaflet(): Promise<any> {
+    if ((window as any).L) return Promise.resolve((window as any).L);
+
+    return new Promise((resolve) => {
+      let attempts = 0;
+      const interval = setInterval(() => {
+        attempts++;
+        if ((window as any).L) {
+          clearInterval(interval);
+          resolve((window as any).L);
+        } else if (attempts > 30) {
+          clearInterval(interval);
+          const script = document.createElement('script');
+          script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+          script.crossOrigin = '';
+          script.onload = () => resolve((window as any).L);
+          document.body.appendChild(script);
+        }
+      }, 50);
+    });
+  }
+
+  async function initMapAndForm() {
+    const mapContainer = document.getElementById('booking-map');
+    const coordInput = document.getElementById('coordinates') as HTMLInputElement | null;
+    const btnDetect = document.getElementById('btn-detect-location');
+
+    if (!mapContainer) return;
+
+    // Bersihkan instance lama jika re-render View Transition
+    if (mapInstance) {
+      try {
+        mapInstance.remove();
+      } catch (err) {
+        console.warn('Map cleanup error:', err);
+      }
+      mapInstance = null;
+    }
+
+    const L = await getLeaflet();
+    if (!L || !mapContainer) return;
+
+    // Default Koordinat Kota Palembang (Pusat Kota / Jembatan Ampera)
+    const defaultLat = -2.990934;
+    const defaultLng = 104.756554;
+
+    mapInstance = L.map('booking-map', {
+      center: [defaultLat, defaultLng],
+      zoom: 14,
+      scrollWheelZoom: true,
+    });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap contributors',
+    }).addTo(mapInstance);
+
+    // Custom SVG Pin Marker mandiri tanpa ketergantungan file aset eksternal
+    const pinSvg = `
+      <div style="position: relative; width: 36px; height: 44px; cursor: grab;">
+        <svg viewBox="0 0 24 24" width="36" height="44" style="filter: drop-shadow(0 3px 5px rgba(0,0,0,0.35));">
+          <path fill="#ea580c" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+          <circle cx="12" cy="9" r="3" fill="#ffffff" />
+        </svg>
+      </div>
+    `;
+
+    const customMarkerIcon = L.divIcon({
+      html: pinSvg,
+      className: 'custom-pin-marker',
+      iconSize: [36, 44],
+      iconAnchor: [18, 42],
+      popupAnchor: [0, -42],
+      tooltipAnchor: [0, -42],
+    });
+
+    markerInstance = L.marker([defaultLat, defaultLng], {
+      draggable: true,
+      autoPan: true,
+      icon: customMarkerIcon,
+    }).addTo(mapInstance);
+
+    markerInstance.bindTooltip('Geser pin ke lokasi Anda', {
+      permanent: true,
+      direction: 'top',
+      offset: [0, -40],
+    });
+
+    function setCoord(lat: number, lng: number) {
+      const formatted = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+      if (coordInput) {
+        coordInput.value = formatted;
+      }
+    }
+
+    // Pastikan ukuran Leaflet pas setelah rendering DOM
+    setTimeout(() => { mapInstance?.invalidateSize(); }, 100);
+    setTimeout(() => { mapInstance?.invalidateSize(); }, 300);
+    setTimeout(() => { mapInstance?.invalidateSize(); }, 600);
+
+    // Update saat marker digeser
+    markerInstance.on('dragend', () => {
+      const pos = markerInstance.getLatLng();
+      setCoord(pos.lat, pos.lng);
+    });
+
+    // Update saat peta diklik
+    mapInstance.on('click', (e: any) => {
+      markerInstance.setLatLng(e.latlng);
+      setCoord(e.latlng.lat, e.latlng.lng);
+    });
+
+    // Deteksi GPS Lokasi Pengguna
+    if (btnDetect) {
+      btnDetect.addEventListener('click', () => {
+        if (!navigator.geolocation) {
+          alert('Peramban Anda tidak mendukung deteksi lokasi otomatis.');
+          return;
+        }
+
+        btnDetect.innerHTML = '<span>⏳ Mendeteksi...</span>';
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            const userLat = pos.coords.latitude;
+            const userLng = pos.coords.longitude;
+            mapInstance.setView([userLat, userLng], 16);
+            markerInstance.setLatLng([userLat, userLng]);
+            setCoord(userLat, userLng);
+            mapInstance.invalidateSize();
+            btnDetect.innerHTML = '<span>✓ Lokasi Terdeteksi</span>';
+            setTimeout(() => {
+              btnDetect.innerHTML = '<span>📍 Deteksi Lokasi Saya</span>';
+            }, 3000);
+          },
+          (err) => {
+            console.warn('Geolocation error:', err);
+            alert('Tidak dapat mendeteksi lokasi otomatis. Silakan geser atau ketuk titik di peta secara manual.');
+            btnDetect.innerHTML = '<span>📍 Deteksi Lokasi Saya</span>';
+          },
+          { enableHighAccuracy: true, timeout: 10000 }
+        );
+      });
+    }
+
+    // Handle Form Elements
+    const form = document.getElementById('booking-form') as HTMLFormElement | null;
+    const channelInputs = document.querySelectorAll<HTMLInputElement>('input[name="contactChannel"]');
+    const contactLabel = document.getElementById('contact-label');
+    const contactInput = document.getElementById('contactDetail') as HTMLInputElement | null;
+    const contactHint = document.getElementById('contact-hint');
+
+    if (!form) return;
+
+    channelInputs.forEach((input) => {
+      input.addEventListener('change', () => {
+        if (!contactLabel || !contactInput || !contactHint) return;
+        const val = input.value;
+        if (val === 'whatsapp') {
+          contactLabel.innerHTML = 'Nomor WhatsApp <span class="text-rose-500">*</span>';
+          contactInput.placeholder = 'Contoh: 081234567890';
+          contactInput.type = 'tel';
+          contactHint.innerText = 'Pastikan nomor WhatsApp aktif untuk menerima konfirmasi cepat dari kami.';
+        } else if (val === 'telegram') {
+          contactLabel.innerHTML = 'Username / Nomor Telegram <span class="text-rose-500">*</span>';
+          contactInput.placeholder = 'Contoh: @username_anda atau 081234567890';
+          contactInput.type = 'text';
+          contactHint.innerText = 'Pastikan akun Telegram Anda dapat menerima pesan langsung dari kami.';
+        } else if (val === 'email') {
+          contactLabel.innerHTML = 'Alamat Email Aktif <span class="text-rose-500">*</span>';
+          contactInput.placeholder = 'Contoh: namaanda@gmail.com';
+          contactInput.type = 'email';
+          contactHint.innerText = 'Customer service kami akan mengirimkan konfirmasi kedatangan ke email ini.';
+        }
+      });
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const bookingData = {
+        id: 'BOOK-' + Date.now().toString(36).toUpperCase(),
+        createdAt: new Date().toISOString(),
+        customerName: formData.get('customerName')?.toString() || '',
+        contactChannel: formData.get('contactChannel')?.toString() || 'whatsapp',
+        contactDetail: formData.get('contactDetail')?.toString() || '',
+        serviceType: formData.get('serviceType')?.toString() || '',
+        duration: formData.get('duration')?.toString() || '',
+        therapistGender: formData.get('therapistGender')?.toString() || 'Terapis Wanita',
+        locationType: formData.get('locationType')?.toString() || 'Rumah Tinggal',
+        bookingTime: formData.get('bookingTime')?.toString() || '2 Jam ke Depan',
+        coordinates: formData.get('coordinates')?.toString() || '-2.990934, 104.756554',
+        unitNote: formData.get('unitNote')?.toString() || '',
+        specialNotes: formData.get('specialNotes')?.toString() || '',
+        status: 'menunggu_konfirmasi',
+      };
+
+      try {
+        localStorage.setItem('latest_booking', JSON.stringify(bookingData));
+        const existingBookings = JSON.parse(localStorage.getItem('all_bookings') || '[]');
+        existingBookings.unshift(bookingData);
+        localStorage.setItem('all_bookings', JSON.stringify(existingBookings));
+
+        window.location.href = '/terima-kasih/';
+      } catch (err) {
+        console.error('Gagal menyimpan booking ke localStorage:', err);
+        alert('Terjadi kesalahan saat memproses pesanan. Silakan coba kembali.');
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initMapAndForm);
+  document.addEventListener('astro:page-load', initMapAndForm);
+</script>

@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GoogleSourcePreferences from '../components/GoogleSourcePreferences.astro';
+
+const pageTitle = "Syarat, Ketentuan & Kode Etik Layanan | Sriwijaya Massage Palembang";
+const pageDesc = "SOP etika, standar keamanan medis, dan syarat ketentuan layanan jasa pijat panggilan Sriwijaya Massage Palembang. Murni kebugaran keluarga.";
+const pageUrl = "https://pijatpanggilanpalembang.web.id/syarat-ketentuan/";
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDesc}
+  canonicalUrl={pageUrl}
+>
+  <div class="bg-gray-100 border-b border-gray-200 py-3 text-xs text-gray-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2">
+      <a href="/" class="hover:text-orange-600">Beranda</a>
+      <span>/</span>
+      <span class="text-gray-900 font-semibold">Syarat & Ketentuan</span>
+    </div>
+  </div>
+
+  <header class="bg-gradient-to-b from-gray-950 to-gray-900 text-white py-16 text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+      <span class="inline-block bg-rose-900/80 text-rose-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+        Integritas & Keselamatan
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+        Syarat, Ketentuan & Kode Etik
+      </h1>
+      <p class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+        Panduan transparansi hubungan antara pelanggan dan terapis untuk mewujudkan lingkungan terapi kebugaran yang santun, higienis, dan terlindungi secara hukum.
+      </p>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
+    
+    <!-- 1. DEKLARASI NON-ASUSILA -->
+    <section class="bg-rose-50 border-2 border-rose-300 p-6 sm:p-8 rounded-2xl space-y-4">
+      <div class="flex items-center gap-3 text-rose-900">
+        <svg class="w-7 h-7 text-rose-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+        <h2 class="text-xl font-black">Deklarasi Mutlak Bebas Praktik Asusila</h2>
+      </div>
+      <p class="text-xs sm:text-sm text-rose-950 leading-relaxed">
+        Sriwijaya Massage Palembang adalah penyedia layanan <strong>murni terapi kebugaran fisik dan kesehatan keluarga</strong>. Kami <strong>MENOLAK KERAS</strong> segala bentuk praktik asusila, pornografi, prostitusi terselubung, dan layanan vitalitas berisiko.
+      </p>
+      <ul class="space-y-1.5 text-xs text-rose-900 list-disc pl-5">
+        <li>Terapis dilarang keras memijat area organ intim, dada wanita, atau bagian tubuh terlarang lainnya.</li>
+        <li>Terapis memiliki hak mutlak untuk membatalkan dan menghentikan sesi secara sepihak jika pelanggan meminta hal-hal yang melanggar norma kesopanan.</li>
+        <li>Tindakan pelecehan verbal maupun fisik terhadap terapis akan langsung diteruskan ke aparat penegak hukum yang berwenang di Kota Palembang.</li>
+      </ul>
+    </section>
+
+    <!-- 2. KONTRAINDIKASI MEDIS -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-bold text-gray-900">Batasan Kontraindikasi Medis Terapi</h2>
+      <p class="text-sm text-gray-600 leading-relaxed">
+        Demi keselamatan Anda, pelanggan diwajibkan memberikan informasi riwayat kesehatan yang sebenarnya sebelum sesi dimulai. Terapi urut tidak dapat dilakukan pada kondisi berikut:
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+        <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl space-y-1">
+          <h4 class="font-bold text-gray-900">Cedera Akut</h4>
+          <p class="text-gray-600">Patah tulang baru, dislokasi sendi terbuka, dan bengkak radang panas terkilir akut kurun waktu 0 hingga 48 jam.</p>
+        </div>
+        <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl space-y-1">
+          <h4 class="font-bold text-gray-900">Penyakit Menular Kulit</h4>
+          <p class="text-gray-600">Infeksi herpes aktif, luka bakar basah, kurap, atau luka operasi bedah yang belum kering.</p>
+        </div>
+        <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl space-y-1">
+          <h4 class="font-bold text-gray-900">Kondisi Kardiovaskular Kronis</h4>
+          <p class="text-gray-600">Tekanan darah tinggi ekstrem tak terkontrol, riwayat stroke akut, atau trombosis vena dalam.</p>
+        </div>
+        <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl space-y-1">
+          <h4 class="font-bold text-gray-900">Kehamilan Trimester Awal</h4>
+          <p class="text-gray-600">Kehamilan usia di bawah 12 minggu tidak dianjurkan pemijatan pada area punggung bawah dan telapak kaki.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. PEMBATALAN & KETERLAMBATAN -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-bold text-gray-900">Kebijakan Pembatalan dan Keterlambatan</h2>
+      <ul class="space-y-2 text-xs text-gray-700 list-disc pl-5 leading-relaxed">
+        <li><strong>Tanpa Biaya Pembatalan Sebelum Terapis Berangkat:</strong> Jika ada perubahan jadwal mendadak, mohon konfirmasikan kepada admin selambat-lambatnya 15 menit setelah pemesanan.</li>
+        <li><strong>Pembatalan Saat Terapis Sudah di Lokasi:</strong> Pelanggan diharapkan mengganti biaya transportasi operasional terapis sebesar Rp 30.000 atas asas keadilan waktu.</li>
+        <li><strong>Keterlambatan Akibat Faktor Cuaca atau Lalu Lintas:</strong> Apabila terjadi hujan lebat atau kemacetan luar biasa, koordinator layanan akan segera mengabarkan pembaruan estimasi kedatangan.</li>
+      </ul>
+    </section>
+
+    <!-- 4. PEMBAYARAN -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-bold text-gray-900">Pembayaran dan Kerahasiaan Data Pelanggan</h2>
+      <p class="text-xs text-gray-700 leading-relaxed">
+        Seluruh data kontak dan alamat yang Anda kirimkan melalui WhatsApp dijamin kerahasiaannya dan hanya digunakan untuk keperluan koordinasi kedatangan terapis. Kami tidak pernah membagikan data nomor telepon Anda kepada pihak ketiga.
+      </p>
+    </section>
+
+    <GoogleSourcePreferences />
+  </div>
+</BaseLayout>

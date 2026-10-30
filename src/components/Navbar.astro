@@ -1,0 +1,114 @@
+---
+const navLinks = [
+  { name: 'Beranda', href: '/' },
+  { name: 'Layanan', href: '/layanan/' },
+  { name: 'Booking', href: '/booking/' },
+  { name: 'Terapis', href: '/terapis/' },
+  { name: 'Area Jangkauan', href: '/area/' },
+  { name: 'Tarif Resmi', href: '/tarif/' },
+  { name: 'Blog', href: '/blog/' },
+  { name: 'Tentang', href: '/tentang-kami/' },
+];
+---
+
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 md:h-20">
+      
+      <!-- Brand Logo -->
+      <a href="/" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-gradient-to-tr from-orange-600 to-amber-500 flex items-center justify-center text-white shadow-md shadow-orange-600/20 group-hover:scale-105 transition-transform">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <div>
+          <span class="block font-extrabold text-base md:text-lg text-gray-900 tracking-tight leading-tight">
+            Sriwijaya Massage
+          </span>
+          <span class="block text-[11px] font-medium text-orange-600">
+            Pijat Panggilan Palembang 24 Jam
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="px-3 py-2 text-sm font-semibold text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg transition-colors"
+          >
+            {link.name}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Action Button CTA Booking -->
+      <div class="hidden sm:flex items-center gap-3">
+        <a
+          href="/booking/"
+          class="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white text-xs md:text-sm font-bold px-4 py-2.5 rounded-xl shadow-sm hover:shadow-md transition-all"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          <span>Booking Online</span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Toggle Button -->
+      <div class="flex items-center md:hidden">
+        <button
+          type="button"
+          id="mobile-menu-btn"
+          class="p-2 text-gray-700 hover:text-orange-600 hover:bg-gray-100 rounded-lg focus:outline-none"
+          aria-label="Buka Menu"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Navigation -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 bg-white px-4 pt-2 pb-6 space-y-1">
+    {navLinks.map((link) => (
+      <a
+        href={link.href}
+        class="block px-3 py-2.5 text-base font-semibold text-gray-700 hover:text-orange-600 hover:bg-orange-50 rounded-lg"
+      >
+        {link.name}
+      </a>
+    ))}
+    <div class="pt-4">
+      <a
+        href="/booking/"
+        class="w-full flex items-center justify-center gap-2 bg-orange-600 text-white font-bold px-4 py-3 rounded-xl shadow"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        <span>Formulir Booking Online</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  function setupNavbar() {
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    if (btn && menu) {
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+      });
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', setupNavbar);
+  document.addEventListener('astro:page-load', setupNavbar);
+</script>

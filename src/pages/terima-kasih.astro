@@ -1,0 +1,153 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Terima Kasih Atas Pemesanan Anda | Sriwijaya Massage Palembang";
+const pageDesc = "Pemesanan layanan terapi pijat Anda telah berhasil kami terima. Customer Service kami akan segera menghubungi Anda.";
+---
+
+<BaseLayout title={pageTitle} description={pageDesc}>
+  <section class="py-16 md:py-24 bg-gray-50 min-h-[80vh] flex items-center justify-center">
+    <div class="max-w-2xl w-full mx-auto px-4 sm:px-6">
+      
+      <div class="bg-white rounded-3xl p-8 sm:p-12 border border-gray-200 shadow-xl text-center space-y-6">
+        
+        <!-- Success Icon -->
+        <div class="w-20 h-20 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center mx-auto shadow-inner animate-bounce">
+          <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+
+        <div class="space-y-2">
+          <span class="inline-block bg-orange-100 text-orange-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+            Pemesanan Berhasil Terkirim
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">
+            Terima Kasih, <span id="display-name" class="text-orange-600">Pelanggan</span>!
+          </h1>
+          <p class="text-sm text-gray-600 max-w-lg mx-auto leading-relaxed">
+            Data reservasi Anda telah tercatat di sistem kami. Customer Service kami akan segera menghubungi Anda melalui <strong id="display-channel" class="text-gray-900">saluran kontak</strong> yang Anda pilih untuk konfirmasi penugasan terapis.
+          </p>
+        </div>
+
+        <!-- Detail Ringkasan Pemesanan Card -->
+        <div class="p-6 bg-gray-50 rounded-2xl border border-gray-200 text-left text-xs space-y-3">
+          <div class="flex items-center justify-between border-b pb-2">
+            <span class="text-gray-500 font-medium">Nomor Referensi Booking:</span>
+            <span id="display-id" class="font-mono font-bold text-orange-700 text-sm">MEMUAT...</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+            <div>
+              <span class="text-gray-500 block">Layanan & Durasi:</span>
+              <strong id="display-service" class="text-gray-900 block mt-0.5">-</strong>
+            </div>
+            <div>
+              <span class="text-gray-500 block">Preferensi Terapis:</span>
+              <strong id="display-therapist" class="text-gray-900 block mt-0.5">-</strong>
+            </div>
+            <div>
+              <span class="text-gray-500 block">Kontak Penerima:</span>
+              <strong id="display-contact" class="text-gray-900 block mt-0.5">-</strong>
+            </div>
+            <div>
+              <span class="text-gray-500 block">Waktu Kedatangan:</span>
+              <strong id="display-time" class="text-gray-900 block mt-0.5">-</strong>
+            </div>
+          </div>
+
+          <div class="pt-2 border-t space-y-1.5">
+            <span class="text-gray-500 block">Titik Koordinat Lokasi:</span>
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span id="display-coords" class="font-mono font-bold text-gray-900 bg-white px-3 py-1.5 rounded-lg border border-gray-200">
+                -
+              </span>
+              <a
+                id="maps-link"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 bg-orange-600 hover:bg-orange-700 text-white font-bold px-3 py-1.5 rounded-lg transition"
+              >
+                <span>🗺️ Buka di Google Maps</span>
+              </a>
+            </div>
+            <p id="display-note" class="text-[11px] text-gray-500 mt-1"></p>
+          </div>
+        </div>
+
+        <!-- Info Notifikasi Waktu CS -->
+        <div class="p-4 bg-orange-50 rounded-xl text-xs text-orange-950 text-left flex items-start gap-3">
+          <span class="text-xl shrink-0">⏳</span>
+          <div class="space-y-0.5">
+            <strong class="block font-bold">Estimasi Waktu Dihubungi: 5 – 15 Menit</strong>
+            <p class="text-orange-900">
+              Admin kami beroperasi 24 jam non-stop dan sedang menyiapkan terapis terdekat dengan lokasi Anda. Anda tidak perlu membayar uang muka (DP) apa pun.
+            </p>
+          </div>
+        </div>
+
+        <!-- Back to Home -->
+        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a
+            href="/"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gray-900 hover:bg-gray-800 text-white font-bold text-xs px-6 py-3 rounded-xl transition"
+          >
+            <span>Kembali ke Beranda</span>
+          </a>
+          <a
+            href="/layanan/"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xs px-6 py-3 rounded-xl transition"
+          >
+            <span>Lihat Menu Layanan Lain</span>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  function renderLatestBooking() {
+    try {
+      const raw = localStorage.getItem('latest_booking');
+      if (!raw) return;
+      const data = JSON.parse(raw);
+
+      const nameEl = document.getElementById('display-name');
+      const channelEl = document.getElementById('display-channel');
+      const idEl = document.getElementById('display-id');
+      const serviceEl = document.getElementById('display-service');
+      const therapistEl = document.getElementById('display-therapist');
+      const contactEl = document.getElementById('display-contact');
+      const timeEl = document.getElementById('display-time');
+      const coordsEl = document.getElementById('display-coords');
+      const mapsLink = document.getElementById('maps-link') as HTMLAnchorElement | null;
+      const noteEl = document.getElementById('display-note');
+
+      if (nameEl) nameEl.innerText = data.customerName || 'Pelanggan';
+      if (channelEl) channelEl.innerText = (data.contactChannel || 'WhatsApp').toUpperCase();
+      if (idEl) idEl.innerText = data.id || 'BOOK-REF';
+      if (serviceEl) serviceEl.innerText = `${data.serviceType} (${data.duration})`;
+      if (therapistEl) therapistEl.innerText = data.therapistGender || 'Terapis Wanita';
+      if (contactEl) contactEl.innerText = `${data.contactChannel?.toUpperCase()}: ${data.contactDetail}`;
+      if (timeEl) timeEl.innerText = data.bookingTime || '2 Jam ke Depan';
+
+      const coords = data.coordinates || '-2.990934, 104.756554';
+      if (coordsEl) coordsEl.innerText = `${data.locationType}: ${coords}`;
+      if (mapsLink) {
+        mapsLink.href = `https://www.google.com/maps?q=${encodeURIComponent(coords)}`;
+      }
+      if (noteEl && data.unitNote) {
+        noteEl.innerText = `Catatan Unit: ${data.unitNote}`;
+      }
+    } catch (e) {
+      console.warn('Gagal membaca ringkasan booking dari localStorage:', e);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', renderLatestBooking);
+  document.addEventListener('astro:page-load', renderLatestBooking);
+</script>

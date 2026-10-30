@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GoogleSourcePreferences from '../components/GoogleSourcePreferences.astro';
+
+const pageTitle = "Tentang Kami | Sriwijaya Massage Palembang Resmi & Berizin STPT";
+const pageDesc = "Profil resmi Sriwijaya Massage Palembang. Layanan kebugaran keluarga terpercaya 24 jam dengan terapis bersertifikat BNSP dan izin STPT Dinkes.";
+const pageUrl = "https://pijatpanggilanpalembang.web.id/tentang-kami/";
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDesc}
+  canonicalUrl={pageUrl}
+>
+  <div class="bg-gray-100 border-b border-gray-200 py-3 text-xs text-gray-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2">
+      <a href="/" class="hover:text-orange-600">Beranda</a>
+      <span>/</span>
+      <span class="text-gray-900 font-semibold">Tentang Kami</span>
+    </div>
+  </div>
+
+  <header class="bg-gradient-to-b from-orange-950 via-orange-900 to-gray-900 text-white py-16 text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+      <span class="inline-block bg-orange-800 text-orange-200 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+        Identitas & Profil Usaha Resmi
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+        Tentang Sriwijaya Massage Palembang
+      </h1>
+      <p class="text-base sm:text-lg text-orange-100 max-w-2xl mx-auto leading-relaxed">
+        Pionir layanan terapi kebugaran fisik, urut tradisional Nusantara, dan reflexology portabel yang menjunjung tinggi etika kesopanan dan kesehatan keluarga di Kota Palembang.
+      </p>
+    </div>
+  </header>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
+    
+    <section class="space-y-4">
+      <h2 class="text-2xl font-bold text-gray-900">Sejarah & Filosofi Layanan Kami</h2>
+      <p class="text-sm text-gray-700 leading-relaxed">
+        Sriwijaya Massage Palembang didirikan dengan satu tujuan mendasar: <strong>mengembalikan esensi luhur dari seni pijat dan urut tradisional Nusantara</strong> sebagai modalitas penyembuhan kelelahan fisik alami yang terhormat, higienis, dan terpercaya bagi masyarakat luas.
+      </p>
+      <p class="text-sm text-gray-700 leading-relaxed">
+        Kami melihat keresahan banyak masyarakat Palembang dan tamu luar kota yang ragu memanggil jasa pijat karena maraknya praktik tidak etis. Oleh sebab itu, kami menetapkan standar tertinggi dalam rekrutmen terapis, pengawasan SOP sanitasi, dan penetapan kode etik yang transparan.
+      </p>
+    </section>
+
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="p-6 bg-white border border-gray-200 rounded-2xl shadow-sm space-y-2">
+        <span class="text-orange-600 font-extrabold text-xs uppercase tracking-wider">Visi Perusahaan</span>
+        <h3 class="text-lg font-bold text-gray-900">Pusat Layanan Kebugaran Terpercaya</h3>
+        <p class="text-xs text-gray-600 leading-relaxed">
+          Menjadi brand penyedia jasa pijat panggilan nomor satu di Sumatera Selatan yang diakui atas profesionalisme terapis, standar kebersihan medis, dan kepatuhan norma budaya ketimuran.
+        </p>
+      </div>
+
+      <div class="p-6 bg-white border border-gray-200 rounded-2xl shadow-sm space-y-2">
+        <span class="text-orange-600 font-extrabold text-xs uppercase tracking-wider">Misi Pelayanan</span>
+        <h3 class="text-lg font-bold text-gray-900">Kesehatan Keluarga Tanpa Kompromi</h3>
+        <p class="text-xs text-gray-600 leading-relaxed">
+          Menghadirkan kenyamanan spa berbintang ke dalam ruang kamar tidur pelanggan secara higienis, cepat tiba, dan bebas dari segala bentuk biaya terselubung.
+        </p>
+      </div>
+    </section>
+
+    <section class="space-y-4 bg-orange-50 border border-orange-200 p-8 rounded-2xl">
+      <h2 class="text-xl font-bold text-orange-950">Legalitas & Kredensial Resmi</h2>
+      <ul class="space-y-3 text-xs text-orange-900 leading-relaxed">
+        <li class="flex items-start gap-2">
+          <span class="font-bold text-orange-600">✓</span>
+          <span><strong>Surat Terdaftar Pengobat Tradisional (STPT):</strong> Beroperasi di bawah binaan dan pengawasan Dinas Kesehatan Kota Palembang sesuai regulasi Perwali Palembang No. 97 Tahun 2011.</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="font-bold text-orange-600">✓</span>
+          <span><strong>Sertifikasi Kompetensi BNSP:</strong> Seluruh terapis inti kami memegang sertifikat kompetensi resmi dari Badan Nasional Sertifikasi Profesi bidang Spa & Massage Terapi.</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="font-bold text-orange-600">✓</span>
+          <span><strong>SKCK & Verifikasi KTP:</strong> Seluruh terapis telah melalui pemeriksaan latar belakang keamanan bebas catatan kriminal demi menjamin rasa aman penuh di ruang hunian Anda.</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-2xl font-bold text-gray-900">Kantor Hub & Informasi Kontak</h2>
+      <div class="p-6 bg-white border border-gray-200 rounded-2xl text-xs text-gray-700 space-y-2">
+        <p><strong>Nama Brand:</strong> Sriwijaya Massage Palembang</p>
+        <p><strong>Badan Pengelola:</strong> Sriwijaya Wellness Group Palembang</p>
+        <p><strong>Alamat Hub Operasional:</strong> Jl. Jenderal Sudirman No. 128, Sekip Jaya, Kec. Kemuning, Kota Palembang, Sumatera Selatan 30128</p>
+        <p><strong>Hotline Reservasi:</strong> Silakan melakukan pemesanan langsung melalui formulir reservasi online kami.</p>
+        <p><strong>Email Resmi:</strong> kontak@pijatpanggilanpalembang.web.id</p>
+      </div>
+    </section>
+
+    <div class="pt-2 text-center">
+      <a
+        href="/booking/"
+        class="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-md transition"
+      >
+        <span>Reservasi Terapis Online Sekarang</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+    </div>
+
+    <GoogleSourcePreferences />
+  </div>
+</BaseLayout>

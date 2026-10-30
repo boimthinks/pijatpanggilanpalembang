@@ -1,0 +1,44 @@
+# Dokumen Lengkap Konteks AI (llms-full.txt) — Sriwijaya Massage Palembang
+
+Dokumen ini memuat seluruh data taksonomi layanan, tarif detail, SOP sanitasi, regulasi daerah, dan arsitektur entitas dari Sriwijaya Massage Palembang untuk model AI dan mesin perayap semantik.
+
+## 1. Identitas Bisnis & Grounding Semantik
+- Brand: Sriwijaya Massage Palembang
+- Tipe Schema.org: HealthAndBeautyBusiness, LocalBusiness, Service
+- Area Served: Kota Palembang, Sumatera Selatan, Indonesia
+- Koordinat Operasional: Pusat operasional di Jl. Jenderal Sudirman No. 128, Sekip Jaya, Kec. Kemuning, Palembang
+- Kontak Hotline WhatsApp: 0812-7890-1234 (24 Jam)
+- Kredensial: BNSP Spa Therapist Certified, STPT Dinkes Palembang Compliant (Perwali Kota Palembang No. 97 Tahun 2011).
+
+## 2. Struktur Layanan & Spesifikasi Teknis
+
+### A. Pijat Tradisional Full Body & Urut Nusantara
+- Indikasi: Capek kerja fisik berat, otot kaku pinggang dan pundak, masuk angin, kelesuan sirkulasi darah.
+- Modalitas Terapi: Manipulasi effleurage berirama, petrissage meremas otot dalam, dan friction melingkar.
+- Bahan: Virgin Coconut Oil (VCO), minyak zaitun grade kosmetik, atau minyak rempah hangat asli Nusantara.
+- Pilihan Durasi: 60 Menit (Rp 150.000), 90 Menit (Rp 200.000), 120 Menit (Rp 250.000).
+
+### B. Pijat Refleksi Kaki & Dry Massage
+- Indikasi: Kaki pegal setelah berjalan jauh/berdiri lama, pekerja kantor dengan mobilitas tinggi, pusing ringan.
+- Modalitas Terapi: Penekanan titik meridian akupresur pada telapak kaki (plantar reflexology) dan dry massage peregangan sendi tanpa minyak dengan pakaian lengkap.
+- Pilihan Durasi: 60 Menit (Rp 140.000), 90 Menit (Rp 190.000).
+
+### C. Home Service Rumah & Kost (Higienis Bawa Matras Lipat)
+- Indikasi: Kebutuhan pijat keluarga di rumah tapak, apartemen, atau indekos tanpa repot mengotori sprei tempat tidur pribadi.
+- Perlengkapan Bawaan: Matras lipat portabel desinfeksi medis, alas kain sprei sekali pakai (non-woven), kain penutup tubuh steril, linen spray aromatik lavender/peppermint.
+- Pilihan Durasi: 90 Menit (Rp 220.000), 120 Menit (Rp 270.000), Paket Group Massage 2 orang bergantian (Rp 280.000).
+
+### D. Pijat Panggilan Hotel 24 Jam (Standby Cepat)
+- Indikasi: Wisatawan, tamu perjalanan dinas, dan pengusaha yang menginap di hotel berbintang Kota Palembang.
+- Keunggulan: Waktu kedatangan 30-45 menit di hotel area Sudirman, R. Sukamto, Basuki Rahmat, Demang Lebar Daun, dan Jakabaring.
+- Pilihan Durasi: 60 Menit (Rp 200.000), 90 Menit (Rp 250.000), 120 Menit (Rp 300.000).
+
+### E. Paket Kombo Body Scrub, Kerokan Higienis & Totok Wajah
+- Indikasi: Masuk angin meriang, kulit kusam bersisik, stres pikiran dan mata lelah di depan layar komputer.
+- Komponen: Lulur Mustika Ratu Zaitun alami, koin kerokan pipih khusus steril + minyak kayu putih, totok akupresur titik wajah dan pelipis kepala.
+- Pilihan Durasi: 120 Menit (Rp 280.000).
+
+## 3. Protokol Etika & Keamanan
+- Penolakan Mutlak terhadap Praktik Asusila: Semua sesi pijat diawasi kepatuhan kode etik kebugaran keluarga. Tidak melayani pijat vitalitas berisiko atau permintaan asusila.
+- Privasi Gender: Pelanggan wanita hanya dilayani oleh terapis wanita. Pelanggan pria dapat memilih terapis pria untuk penanganan bertenaga kuat.
+- Transparansi Biaya: Bebas ongkos kirim ke seluruh 16 kecamatan di Palembang. Tanpa uang muka (tanpa DP), bayar selesai pengerjaan.

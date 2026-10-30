@@ -1,0 +1,175 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GoogleSourcePreferences from '../../components/GoogleSourcePreferences.astro';
+
+const pageTitle = "Layanan Terapis Pria Profesional Palembang | Pijat Pegal & Deep Tissue";
+const pageDesc = "Jasa terapis pria bersertifikat BNSP di Palembang. Tekanan kuat bertenaga untuk mengatasi otot tegang, pegal pinggang, dan lelah fisik. On-call 24 jam.";
+const pageUrl = "https://pijatpanggilanpalembang.web.id/terapis/pria/";
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Layanan Terapis Pria Profesional Palembang',
+    description: pageDesc,
+    provider: {
+      '@type': 'HealthAndBeautyBusiness',
+      name: 'Sriwijaya Massage Palembang',
+    },
+    areaServed: {
+      '@type': 'City',
+      name: 'Kota Palembang',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Beranda', item: 'https://pijatpanggilanpalembang.web.id/' },
+      { '@type': 'ListItem', position: 2, name: 'Terapis', item: 'https://pijatpanggilanpalembang.web.id/terapis/' },
+      { '@type': 'ListItem', position: 3, name: 'Terapis Pria', item: pageUrl },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDesc}
+  image="/images/terapis-pria.webp"
+  canonicalUrl={pageUrl}
+  schema={schema}
+>
+  <div class="bg-gray-100 border-b border-gray-200 py-3 text-xs text-gray-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2">
+      <a href="/" class="hover:text-orange-600">Beranda</a>
+      <span>/</span>
+      <a href="/terapis/" class="hover:text-orange-600">Terapis</a>
+      <span>/</span>
+      <span class="text-gray-900 font-semibold">Terapis Pria</span>
+    </div>
+  </div>
+
+  <header class="bg-gradient-to-b from-slate-950 via-slate-900 to-gray-900 text-white py-14">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+      <span class="inline-block bg-slate-800 text-orange-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+        Divisi Terapis Pria Berlisensi
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+        Layanan Terapis Pria Profesional Palembang
+      </h1>
+      <p class="text-base sm:text-lg text-slate-300 leading-relaxed">
+        Penanganan terapi fisik dengan tenaga penekanan stabil dan mendalam (*deep tissue*) untuk meredakan ketegangan otot berat pada pekerja, sopir perjalanan jauh, dan olahragawan.
+      </p>
+    </div>
+  </header>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      
+      <main class="lg:col-span-8 space-y-10">
+        <!-- Image 4:3 -->
+        <div class="aspect-4-3 bg-gray-100 rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
+          <img
+            src="/images/terapis-pria.webp"
+            alt="Terapis Pria Profesional Palembang"
+            width="800"
+            height="600"
+            class="w-full h-full object-cover"
+          />
+        </div>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">Karakteristik & Keunggulan Terapis Pria</h2>
+          <p class="text-sm text-gray-700 leading-relaxed">
+            Struktur fisik dan massa otot pria umumnya memerlukan intensitas tekanan yang lebih tinggi untuk dapat merelaksasi serat otot bagian dalam (*deep muscle layer*). Terapis pria kami dilatih khusus secara biomekanika tubuh:
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <div class="p-4 bg-white border border-gray-200 rounded-xl space-y-1">
+              <h3 class="font-bold text-sm text-slate-900">Tekanan Kuat & Konstan</h3>
+              <p class="text-xs text-gray-600 leading-relaxed">Mampu mempertahankan ritme tekanan bertenaga pada area otot besar seperti punggung, paha, dan betis tanpa cepat lelah.</p>
+            </div>
+            <div class="p-4 bg-white border border-gray-200 rounded-xl space-y-1">
+              <h3 class="font-bold text-sm text-slate-900">Pelemasan Saraf Pinggang</h3>
+              <p class="text-xs text-gray-600 leading-relaxed">Menguasai teknik dekompresi tulang belakang dan titik meridian panggul untuk mengatasi pegal duduk seharian.</p>
+            </div>
+            <div class="p-4 bg-white border border-gray-200 rounded-xl space-y-1">
+              <h3 class="font-bold text-sm text-slate-900">Bebas Rasa Canggung</h3>
+              <p class="text-xs text-gray-600 leading-relaxed">Komunikasi santai sesama pria, Anda dapat bebas meminta fokus pemijatan pada area yang paling pegal.</p>
+            </div>
+            <div class="p-4 bg-white border border-gray-200 rounded-xl space-y-1">
+              <h3 class="font-bold text-sm text-slate-900">Standar Etika Resmi</h3>
+              <p class="text-xs text-gray-600 leading-relaxed">Murni kebugaran kesehatan keluarga. Bebas dari manipulasi yang membahayakan tubuh.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Menu yang Cocok untuk Terapis Pria -->
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">Pilihan Terapi yang Sering Dipilih</h2>
+          <div class="space-y-3">
+            <div class="p-5 bg-white border border-gray-200 rounded-xl flex items-center justify-between">
+              <div>
+                <h4 class="font-bold text-sm text-gray-900">Pijat Tradisional & Urut Pegal Linu (90 Menit)</h4>
+                <p class="text-xs text-gray-500">Full body urut bertenaga + minyak rempah hangat</p>
+              </div>
+              <span class="text-orange-700 font-extrabold text-sm">Rp 200.000</span>
+            </div>
+            <div class="p-5 bg-white border border-gray-200 rounded-xl flex items-center justify-between">
+              <div>
+                <h4 class="font-bold text-sm text-gray-900">Pijat Masuk Angin + Kerokan Higienis (90 Menit)</h4>
+                <p class="text-xs text-gray-500">Urut punggung mendalam + koin kerokan steril minyak kayu putih</p>
+              </div>
+              <span class="text-orange-700 font-extrabold text-sm">Rp 220.000</span>
+            </div>
+            <div class="p-5 bg-white border border-gray-200 rounded-xl flex items-center justify-between">
+              <div>
+                <h4 class="font-bold text-sm text-gray-900">Pijat Hotel On-Call Cepat Tiba (90 Menit)</h4>
+                <p class="text-xs text-gray-500">Tiba 30-45 menit di kamar hotel Anda di Palembang</p>
+              </div>
+              <span class="text-orange-700 font-extrabold text-sm">Rp 250.000</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">FAQ Terapis Pria</h2>
+          <div class="space-y-3">
+            <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl">
+              <h4 class="font-bold text-xs text-gray-900">Apakah terapis pria bisa dipanggil ke rumah atau kost?</h4>
+              <p class="text-xs text-gray-600 mt-1">Bisa, kami melayani panggilan ke perumahan, indekos pria/karyawan, apartemen, serta hotel berbintang di Palembang.</p>
+            </div>
+            <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl">
+              <h4 class="font-bold text-xs text-gray-900">Bagaimana jika tekanan pijat terasa terlalu keras?</h4>
+              <p class="text-xs text-gray-600 mt-1">Cukup beritahukan terapis untuk mengurangi tekanan. Terapis kami sangat adaptif dengan ambang batas kenyamanan Anda.</p>
+            </div>
+          </div>
+        </section>
+
+        <GoogleSourcePreferences />
+      </main>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4 sticky top-24 space-y-6">
+        <div class="bg-gradient-to-br from-slate-900 to-gray-900 text-white p-6 rounded-2xl shadow-xl space-y-4 border border-slate-700">
+          <span class="inline-block bg-orange-500 text-white font-black text-[10px] uppercase px-2.5 py-0.5 rounded-full">
+            Standby 24 Jam
+          </span>
+          <h3 class="text-lg font-bold text-white">Order Terapis Pria</h3>
+          <p class="text-xs text-slate-300">
+            Kirimkan lokasi rumah atau nama hotel Anda, terapis terdekat segera merapat.
+          </p>
+
+          <a
+            href="/booking/"
+            class="w-full flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-xs py-3 rounded-xl shadow transition-transform hover:scale-105"
+          >
+            <span>Isi Form Booking Terapis Pria</span>
+          </a>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</BaseLayout>

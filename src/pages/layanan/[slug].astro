@@ -1,0 +1,380 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { servicesData, type ServiceData } from '../../data/services';
+import GoogleSourcePreferences from '../../components/GoogleSourcePreferences.astro';
+
+export function getStaticPaths() {
+  return servicesData.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+interface Props {
+  service: ServiceData;
+}
+
+const { service } = Astro.props;
+const siteUrl = 'https://pijatpanggilanpalembang.web.id';
+const pageUrl = `${siteUrl}/layanan/${service.slug}/`;
+
+// Schema.org Composite (Service + BreadcrumbList + FAQPage)
+const serviceSchema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${pageUrl}#service`,
+    name: service.title,
+    description: service.shortDesc,
+    serviceType: service.primaryKeyword,
+    provider: {
+      '@type': 'HealthAndBeautyBusiness',
+      name: 'Sriwijaya Massage Palembang',
+      url: siteUrl,
+    },
+    areaServed: {
+      '@type': 'City',
+      name: 'Kota Palembang',
+    },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: `Paket ${service.title}`,
+      itemListElement: service.packages.map((pkg) => ({
+        '@type': 'Offer',
+        name: pkg.name,
+        priceSpecification: {
+          '@type': 'PriceSpecification',
+          price: pkg.price.replace(/[^0-9]/g, ''),
+          priceCurrency: 'IDR',
+        },
+      })),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Beranda',
+        item: siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Layanan',
+        item: `${siteUrl}/layanan/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: service.title,
+        item: pageUrl,
+      },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: service.faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title={service.metaTitle}
+  description={service.metaDesc}
+  image={service.heroImage}
+  canonicalUrl={pageUrl}
+  schema={serviceSchema}
+>
+  <!-- Breadcrumb Bar -->
+  <div class="bg-gray-100 border-b border-gray-200 py-3 text-xs text-gray-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2">
+        <a href="/" class="hover:text-orange-600">Beranda</a>
+        <span>/</span>
+        <a href="/layanan/" class="hover:text-orange-600">Layanan</a>
+        <span>/</span>
+        <span class="text-gray-900 font-semibold truncate">{service.title}</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <header class="bg-gradient-to-b from-orange-950 via-orange-900 to-gray-900 text-white py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 max-w-4xl">
+      <div class="inline-flex items-center gap-2 bg-orange-800 text-orange-200 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+        <span>Layanan Resmi Palembang</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
+        {service.title}
+      </h1>
+      <p class="text-base sm:text-lg text-orange-100/90 leading-relaxed">
+        {service.shortDesc}
+      </p>
+    </div>
+  </header>
+
+  <!-- 2-COLUMN MAIN CONTENT WITH STICKY SIDEBAR -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      
+      <!-- MAIN CONTENT (Col 8) -->
+      <main class="lg:col-span-8 space-y-12">
+        
+        <!-- Featured Image (Rasio 4:3 800x600 WebP) -->
+        <div class="aspect-4-3 bg-gray-100 rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
+          <img
+            src={service.heroImage}
+            alt={service.title}
+            width="800"
+            height="600"
+            class="w-full h-full object-cover"
+            loading="eager"
+          />
+        </div>
+
+        <!-- 1. TIERED PACKAGES (Rincian Paket Bertingkat) -->
+        <section class="space-y-6">
+          <div class="border-b border-gray-200 pb-3">
+            <h2 class="text-2xl font-bold text-gray-900">Pilihan Paket & Rincian Durasi</h2>
+            <p class="text-sm text-gray-600">Pilih durasi yang sesuai dengan tingkat kelelahan dan waktu luang Anda.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {service.packages.map((pkg) => (
+              <div class={`rounded-2xl p-6 border transition-all flex flex-col justify-between ${pkg.isPopular ? 'border-orange-500 bg-orange-50/40 shadow-md ring-2 ring-orange-500/20' : 'border-gray-200 bg-white'}`}>
+                <div>
+                  {pkg.isPopular && (
+                    <span class="inline-block bg-orange-600 text-white text-[11px] font-extrabold uppercase px-2.5 py-0.5 rounded-full mb-3">
+                      Paling Populer
+                    </span>
+                  )}
+                  <h3 class="font-bold text-gray-900 text-lg leading-tight">{pkg.name}</h3>
+                  <div class="my-3">
+                    <span class="text-2xl font-black text-orange-800">{pkg.price}</span>
+                    <span class="text-xs text-gray-500 block">Durasi: {pkg.duration}</span>
+                  </div>
+                  <ul class="space-y-2 text-xs text-gray-700 mt-4">
+                    {pkg.deliverables.map((item) => (
+                      <li class="flex items-start gap-2">
+                        <span class="text-orange-600 font-bold shrink-0">✓</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div class="pt-6 mt-6 border-t border-gray-100">
+                  <a
+                    href="/booking/"
+                    class={`w-full inline-flex items-center justify-center font-bold text-xs py-2.5 rounded-xl transition-colors ${pkg.isPopular ? 'bg-orange-600 hover:bg-orange-700 text-white shadow' : 'bg-gray-100 hover:bg-orange-600 hover:text-white text-gray-800'}`}
+                  >
+                    <span>Booking Paket Ini</span>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- 2. TABEL ESTIMASI BIAYA & TRANSPARANSI (RAB Breakdown) -->
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">Transparansi Estimasi Biaya (All-in)</h2>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Tidak ada pungutan liar, biaya parkir tersembunyi, atau ongkos bahan tambahan. Semua rincian telah tercakup secara terbuka:
+          </p>
+
+          <div class="overflow-x-auto border border-gray-200 rounded-xl bg-white">
+            <table class="w-full text-left text-sm">
+              <thead class="bg-gray-50 border-b border-gray-200 text-xs text-gray-700 uppercase">
+                <tr>
+                  <th class="py-3 px-4">Komponen Layanan</th>
+                  <th class="py-3 px-4">Spesifikasi & Standar</th>
+                  <th class="py-3 px-4">Estimasi Tarif</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200 text-xs text-gray-600">
+                {service.costBreakdown.map((item) => (
+                  <tr class="hover:bg-gray-50">
+                    <td class="py-3 px-4 font-bold text-gray-900">{item.component}</td>
+                    <td class="py-3 px-4">{item.specification}</td>
+                    <td class="py-3 px-4 font-semibold text-orange-700">{item.estimate}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 3. SPESIFIKASI ALAT & STANDAR HIGIENIS -->
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">Spesifikasi Peralatan & Sanitasi Medis</h2>
+          <p class="text-sm text-gray-600">
+            Setiap alat yang bersentuhan dengan tubuh Anda melewati prosedur sterilisasi ketat untuk menjamin keamanan kulit:
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {service.equipmentSpecs.map((eq) => (
+              <div class="p-4 bg-white border border-gray-200 rounded-xl space-y-1">
+                <span class="text-xs font-bold text-orange-700 uppercase">Higienis</span>
+                <h4 class="font-bold text-gray-900 text-sm">{eq.name}</h4>
+                <p class="text-xs text-gray-600">{eq.brandOrType}</p>
+                <p class="text-[11px] text-gray-500 pt-1 border-t border-gray-100">{eq.sanitationStandard}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- 4. ANALISIS KELAYAKAN LOKASI (VENUE LOGISTICS) -->
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">Analisis Lokasi & Kelayakan Tempat</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {service.venueAnalysis.map((venue) => (
+              <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl space-y-2">
+                <h4 class="font-bold text-gray-900 text-sm">{venue.venueType}</h4>
+                <span class="inline-block px-2 py-0.5 bg-orange-100 text-orange-800 text-[10px] font-bold rounded">
+                  {venue.suitability}
+                </span>
+                <p class="text-xs text-gray-600 leading-relaxed">{venue.logisticsRequirement}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- 5. PROSEDUR SOP & MITIGASI K3 -->
+        <section class="space-y-4 bg-white p-6 rounded-2xl border border-gray-200">
+          <h2 class="text-xl font-bold text-gray-900">Standar Operasional (SOP) & Mitigasi Risiko</h2>
+          <ol class="space-y-2 text-xs text-gray-700 list-decimal pl-4 leading-relaxed">
+            {service.sopSteps.map((step) => (
+              <li>{step}</li>
+            ))}
+          </ol>
+
+          <div class="mt-4 pt-4 border-t border-gray-100">
+            <h4 class="font-bold text-xs uppercase text-gray-900 mb-2">Protokol Keselamatan Fisik</h4>
+            <ul class="space-y-1 text-xs text-gray-600 list-disc pl-4">
+              {service.k3Mitigation.map((k3) => (
+                <li>{k3}</li>
+              ))}
+            </ul>
+          </div>
+          <div class="mt-4 p-3 bg-orange-50 text-orange-850 text-xs rounded-lg font-medium">
+            <strong>Legalitas Perizinan:</strong> {service.legalityNotes}
+          </div>
+        </section>
+
+        <!-- 6. FREQUENTLY ASKED QUESTIONS (6 BUTIR FAQ) -->
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">Pertanyaan Populer Seputar Layanan</h2>
+          <div class="space-y-3">
+            {service.faqs.map((faq) => (
+              <div class="p-5 bg-white border border-gray-200 rounded-xl space-y-1">
+                <h3 class="font-bold text-sm text-gray-900">{faq.question}</h3>
+                <p class="text-xs text-gray-600 leading-relaxed mt-1">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- 7. HUB ARTIKEL PENDUKUNG (INTERNAL LINKING) -->
+        {service.spokeArticles.length > 0 && (
+          <section class="p-6 bg-gray-50 border border-gray-200 rounded-2xl space-y-3">
+            <h3 class="font-bold text-sm text-gray-900">Panduan dan Artikel Terkait</h3>
+            <ul class="space-y-2 text-xs">
+              {service.spokeArticles.map((art) => (
+                <li>
+                  <a href={art.url} class="text-orange-600 hover:underline font-semibold flex items-center gap-1.5">
+                    <span>→</span>
+                    <span>{art.title}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        <GoogleSourcePreferences />
+
+      </main>
+
+      <!-- STICKY SIDEBAR CTA (Col 4) -->
+      <aside class="lg:col-span-4 sticky top-24 space-y-6">
+        
+        <!-- Booking Card -->
+        <div class="bg-gradient-to-br from-orange-950 to-gray-900 text-white p-6 rounded-2xl shadow-xl space-y-5 border border-orange-700/50">
+          <div class="space-y-1">
+            <span class="inline-block bg-orange-500 text-white font-black text-[10px] uppercase px-2.5 py-0.5 rounded-full">
+              Siap Panggil 24 Jam
+            </span>
+            <h3 class="text-xl font-bold text-white tracking-tight">Reservasi Cepat</h3>
+            <p class="text-xs text-orange-200">Terapis terdekat segera meluncur ke lokasi Anda.</p>
+          </div>
+
+          <div class="p-3.5 bg-white/10 rounded-xl text-xs space-y-2 border border-white/10">
+            <div class="flex items-center justify-between">
+              <span class="text-gray-300">Waktu Kedatangan:</span>
+              <span class="font-bold text-orange-300">30–45 Menit</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-gray-300">Uang Muka (DP):</span>
+              <span class="font-bold text-orange-300">Rp 0 (Tanpa DP)</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-gray-300">Ongkos Transport:</span>
+              <span class="font-bold text-orange-300">Gratis (All-in)</span>
+            </div>
+          </div>
+
+          <a
+            href="/booking/"
+            class="w-full flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-black text-sm py-3.5 rounded-xl shadow-lg transition-transform hover:scale-105"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <span>Isi Form Booking Online</span>
+          </a>
+
+          <p class="text-[11px] text-gray-400 text-center">
+            Pemesanan aman & legal • Melayani seluruh 16 kecamatan di Palembang
+          </p>
+        </div>
+
+        <!-- Trust Badges Sidebar -->
+        <div class="bg-white p-5 rounded-2xl border border-gray-200 text-xs space-y-3">
+          <h4 class="font-bold text-gray-900 uppercase tracking-wide">Jaminan Kepuasan</h4>
+          <ul class="space-y-2 text-gray-600">
+            <li class="flex items-center gap-2">
+              <span class="text-orange-600 font-bold">✓</span>
+              <span>Terapis Bersertifikat BNSP Resmi</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-orange-600 font-bold">✓</span>
+              <span>Izin STPT Dinkes Kota Palembang</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-orange-600 font-bold">✓</span>
+              <span>Pilihan Terapis Pria & Wanita</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-orange-600 font-bold">✓</span>
+              <span>Ketat Menolak Praktik Asusila</span>
+            </li>
+          </ul>
+        </div>
+
+      </aside>
+
+    </div>
+  </div>
+</BaseLayout>
