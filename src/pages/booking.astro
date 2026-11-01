@@ -503,7 +503,8 @@ const pageDesc = "Formulir reservasi jasa pijat panggilan ke hotel dan rumah di 
     const contactInput = document.getElementById('contactDetail') as HTMLInputElement | null;
     const contactHint = document.getElementById('contact-hint');
 
-    if (!form) return;
+    if (!form || form.dataset.initialized === 'true') return;
+    form.dataset.initialized = 'true';
 
     channelInputs.forEach((input) => {
       input.addEventListener('change', () => {
@@ -528,8 +529,26 @@ const pageDesc = "Formulir reservasi jasa pijat panggilan ke hotel dan rumah di 
       });
     });
 
-    form.addEventListener('submit', (e) => {
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbymFcWG2LyPQc6fS7ZNC0V5ycBjTAinUXxj1lz3aIZ1ABExBXT6_xuQXPFRBHPMd7Sx/exec';
+    let isSubmitting = false;
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
+
+      if (isSubmitting) return;
+      isSubmitting = true;
+
+      const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `
+          <svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          <span>Sedang Mengirim Pesanan...</span>
+        `;
+      }
 
       const formData = new FormData(form);
       const bookingData = {
@@ -550,19 +569,31 @@ const pageDesc = "Formulir reservasi jasa pijat panggilan ke hotel dan rumah di 
       };
 
       try {
+        // 1. Simpan backup ke localStorage
         localStorage.setItem('latest_booking', JSON.stringify(bookingData));
         const existingBookings = JSON.parse(localStorage.getItem('all_bookings') || '[]');
         existingBookings.unshift(bookingData);
         localStorage.setItem('all_bookings', JSON.stringify(existingBookings));
 
+        // 2. Kirim ke Google Apps Script (Google Sheets)
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8',
+          },
+          body: JSON.stringify(bookingData),
+        });
+
+        // 3. Arahkan ke halaman terima kasih
         window.location.href = '/terima-kasih/';
       } catch (err) {
-        console.error('Gagal menyimpan booking ke localStorage:', err);
-        alert('Terjadi kesalahan saat memproses pesanan. Silakan coba kembali.');
+        console.error('Error saat mengirim booking:', err);
+        // Tetap redirect jika offline/error setelah data tersimpan di localStorage
+        window.location.href = '/terima-kasih/';
       }
     });
   }
 
-  document.addEventListener('DOMContentLoaded', initMapAndForm);
   document.addEventListener('astro:page-load', initMapAndForm);
 </script>

@@ -57,6 +57,6 @@ Tamu-tamu yang menginap di hotel berbintang kawasan Jalan Jenderal Sudirman atau
 
 ## Cara Menghindari Jebakan Biaya Tersembunyi Saat Memesan Terapis
 
-1. **Pastikan Ongkos Transport Sudah All-in:** Tanyakan kepada admin WhatsApp apakah tarif yang diberikan sudah termasuk transport ke lokasi Anda.
+1. **Pastikan Ongkos Transport Sudah All-in:** Melalui sistem [Formulir Booking Online](/booking/) resmi kami, seluruh rincian tarif sudah all-in termasuk biaya transportasi armada di area operasional Kota Palembang tanpa biaya siluman.
 2. **Tolak Pembayaran DP ke Rekening Pribadi:** Layanan profesional selalu menerapkan sistem bayar setelah sesi terapi selesai (*cash on delivery* atau QRIS resmi).
 3. **Pilih Terapis Berizin Resmi:** Pastikan penyedia jasa memiliki legalitas Surat Terdaftar Pengobat Tradisional (STPT) dari Dinas Kesehatan setempat agar terhindar dari malpraktik pijat.
