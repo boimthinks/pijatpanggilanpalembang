@@ -77,3 +77,17 @@ Semua tarif sudah termasuk ongkos transportasi untuk area dalam kota Palembang (
 - **Sukarami & Sekitarnya:** Sukarami, Alang-Alang Lebar, Talang Kelapa, Kebun Bunga, Kawasan Bandara SMB II, CitraGrand City.
 - **Kemuning, Sako & Kalidoni:** Sekip, Kenten, Pipa Reja, Pusri, Simpang Dogan, Celentang.
 - **Seberang Ulu & Jakabaring:** Seberang Ulu I, II, Plaju, Jakabaring Sport City, Kompleks OPI Mall.
+
+---
+
+## 6. Daftar Artikel Blog Terbit
+
+1. `terapi-pegal-pinggang-kebugaran-pria` (2026-10-30) — Mengatasi Pegal Pinggang dan Menjaga Kebugaran Pria Pekerja
+2. `keseleo-dan-terkilir-kapan-boleh-diurut` (2026-10-30) — Keseleo dan Terkilir: Kapan Boleh Diurut dan Kapan Harus Menggunakan Metode RICE?
+3. `tips-memilih-pijat-panggilan-aman` (2026-10-30) — Tips Memilih Jasa Pijat Panggilan Aman di Palembang
+4. `tarif-pijat-panggilan-palembang` (2026-10-30) — Informasi Lengkap Tarif Pijat Panggilan Palembang 24 Jam
+5. `manfaat-pijat-capek-perjalanan` (2026-10-30) — Manfaat Pijat Capek Setelah Perjalanan Jauh ke Palembang
+6. `perbedaan-shiatsu-vs-pijat-tradisional` (2026-11-07) — Beda Shiatsu dan Pijat Tradisional untuk Mengatasi Otot Kaku
+7. `mengenal-swedish-massage-relaksasi` (2026-11-13) — Teknik Swedish Massage untuk Redakan Stres dan Insomnia
+8. `balinese-massage-vs-urut-tradisional` (2026-11-14) — Balinese Massage vs Urut Tradisional Palembang, Pilih Mana
+9. `manfaat-dry-massage-tanpa-minyak` (2026-11-16) — Dry Massage Palembang, Solusi Badan Pegal Tanpa Lengket
